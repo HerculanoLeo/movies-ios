@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21701"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="340" height="30"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="smS-Ja-5mG" userLabel="Divider Card">
+                    <rect key="frame" x="0.0" y="0.0" width="340" height="30"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AI7-mg-Cho" userLabel="Line Gray">
+                            <rect key="frame" x="0.0" y="14.666666666666666" width="340" height="1"/>
+                            <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="v5b-XC-ux5"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="AI7-mg-Cho" firstAttribute="leading" secondItem="smS-Ja-5mG" secondAttribute="leading" id="Ejb-Gh-5I9"/>
+                        <constraint firstItem="AI7-mg-Cho" firstAttribute="centerY" secondItem="smS-Ja-5mG" secondAttribute="centerY" id="OgQ-Po-4LX"/>
+                        <constraint firstAttribute="trailing" secondItem="AI7-mg-Cho" secondAttribute="trailing" id="bI3-qP-wOQ"/>
+                        <constraint firstAttribute="height" constant="30" id="can-Aw-Ksh"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="smS-Ja-5mG" secondAttribute="bottom" id="4Kv-YU-obj"/>
+                <constraint firstItem="smS-Ja-5mG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="D9t-vN-r2c"/>
+                <constraint firstItem="smS-Ja-5mG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="PdD-t4-snl"/>
+                <constraint firstAttribute="trailing" secondItem="smS-Ja-5mG" secondAttribute="trailing" id="Ux5-Th-ewD"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="11" y="-11"/>
+        </view>
+    </objects>
+</document>

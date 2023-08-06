@@ -1,0 +1,13 @@
+//
+//  MovieDetailsDelegate.swift
+//  MyMovies
+//
+//  Created by Herculano Leo de Oliveira Dias on 06/08/23.
+//
+
+import Foundation
+
+protocol MovieDetailsDelegate {
+  var movieModelSelected: MovieDetailsViewModel { get }
+  func selectMovie(_ movie: Movie) -> Void
+}

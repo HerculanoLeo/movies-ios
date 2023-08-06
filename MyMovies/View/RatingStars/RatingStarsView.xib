@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB" userLabel="Rating Stars View" customClass="RatingStarsView" customModule="iMovie" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="340" height="50"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tpv-W7-hdD">
+                    <rect key="frame" x="0.0" y="0.0" width="340" height="50"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Unmarked Star" translatesAutoresizingMaskIntoConstraints="NO" id="BaC-wh-RoC" userLabel="Star 1">
+                            <rect key="frame" x="0.0" y="0.0" width="52" height="50"/>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Unmarked Star" translatesAutoresizingMaskIntoConstraints="NO" id="LGH-QA-PcI" userLabel="Star 2">
+                            <rect key="frame" x="72" y="0.0" width="52" height="50"/>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Unmarked Star" translatesAutoresizingMaskIntoConstraints="NO" id="BDp-N9-Afo" userLabel="Star 3">
+                            <rect key="frame" x="144" y="0.0" width="52" height="50"/>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="3" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Unmarked Star" translatesAutoresizingMaskIntoConstraints="NO" id="eGc-ux-eH4" userLabel="Star 4">
+                            <rect key="frame" x="216" y="0.0" width="52" height="50"/>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="4" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Unmarked Star" translatesAutoresizingMaskIntoConstraints="NO" id="U3j-Gz-08n" userLabel="Star 5">
+                            <rect key="frame" x="288" y="0.0" width="52" height="50"/>
+                        </imageView>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="tpv-W7-hdD" secondAttribute="bottom" id="6s4-xW-yly"/>
+                <constraint firstItem="tpv-W7-hdD" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="7RB-ri-k2P"/>
+                <constraint firstItem="tpv-W7-hdD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="8No-L3-gbY"/>
+                <constraint firstAttribute="trailing" secondItem="tpv-W7-hdD" secondAttribute="trailing" id="Twf-yt-fBR"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outletCollection property="starImageViewList" destination="BaC-wh-RoC" collectionClass="NSMutableArray" id="wXA-7q-2aX"/>
+                <outletCollection property="starImageViewList" destination="LGH-QA-PcI" collectionClass="NSMutableArray" id="jr6-P5-Gdf"/>
+                <outletCollection property="starImageViewList" destination="BDp-N9-Afo" collectionClass="NSMutableArray" id="tdw-dW-U1I"/>
+                <outletCollection property="starImageViewList" destination="eGc-ux-eH4" collectionClass="NSMutableArray" id="33v-th-bRr"/>
+                <outletCollection property="starImageViewList" destination="U3j-Gz-08n" collectionClass="NSMutableArray" id="u2j-YE-RsX"/>
+            </connections>
+            <point key="canvasLocation" x="114.50381679389312" y="-159.1549295774648"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Unmarked Star" width="46" height="46"/>
+    </resources>
+</document>

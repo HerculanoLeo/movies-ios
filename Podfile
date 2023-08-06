@@ -3,7 +3,7 @@
 platform :ios, '13.0'
 use_frameworks!
 
-target 'iMovie' do
+target 'MyMovies' do
   # Comment the next line if you don't want to use dynamic frameworks
   # Pods for iMovie
 end
