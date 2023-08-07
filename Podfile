@@ -5,5 +5,8 @@ use_frameworks!
 
 target 'MyMovies' do
   # Comment the next line if you don't want to use dynamic frameworks
-  # Pods for iMovie
+  # Pods for MyMovie
+
+  pod 'RxSwift', '6.5.0'
+  pod 'RxCocoa', '6.5.0'
 end

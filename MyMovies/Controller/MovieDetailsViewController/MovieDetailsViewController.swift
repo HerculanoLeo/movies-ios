@@ -48,7 +48,7 @@ class MovieDetailsViewController: UIViewController {
 
     guard let ratingStarsView = Bundle.main.loadNibNamed("RatingStarsView", owner: nil)?.first as? RatingStarsView else { fatalError("Error to create a RatingStarsView") }
 
-    ratingStarsView.configureView(RatingStarsViewModel(stars: model.stars))
+    ratingStarsView.configureView(RatingStarsViewModel(stars: model.stars, readOnly: false))
 
     ratingStarsCardView.addSubview(ratingStarsView)
 
