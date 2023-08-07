@@ -13,7 +13,7 @@ class MovieDetailsViewController: UIViewController {
 
   @IBOutlet weak var movieNameLabel: UILabel!
 
-  @IBOutlet weak var movieSynopsisLabel: UILabel!
+  @IBOutlet weak var sysnopsisMovieLabel: UILabel!
 
   @IBOutlet weak var ageGroupLabel: UILabel!
 
@@ -25,17 +25,25 @@ class MovieDetailsViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+
     configureView()
   }
 
   func configureView() {
+    navigationController?.navigationBar.barTintColor = .clear
+    navigationController?.navigationBar.isTranslucent = true
+    navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+    navigationController?.navigationBar.shadowImage = UIImage()
+    navigationController?.navigationBar.alpha = 0
+
+    wallpaperImageView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
     wallpaperImageView.layer.cornerRadius = 24
 
     guard let delegate = self.delegate else { fatalError("Delegate must be implemented") }
     let model = delegate.movieModelSelected;
 
     movieNameLabel.text = model.name
-    movieSynopsisLabel.text = model.synopsis
+    sysnopsisMovieLabel.text = model.synopsis
     ageGroupLabel.text = model.ageGroup
 
     guard let ratingStarsView = Bundle.main.loadNibNamed("RatingStarsView", owner: nil)?.first as? RatingStarsView else { fatalError("Error to create a RatingStarsView") }
