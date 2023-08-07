@@ -3,7 +3,6 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -23,100 +22,100 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gFy-0T-8V4">
-                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                    <rect key="frame" x="0.0" y="-100" width="393" height="952"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageView:PUi-la-iVB:image" translatesAutoresizingMaskIntoConstraints="NO" id="PUi-la-iVB" userLabel="Wallpaper Movie Image View">
-                            <rect key="frame" x="0.0" y="-100" width="393" height="160"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="160" id="F8G-zh-JHa"/>
-                            </constraints>
-                        </imageView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="AmY-O0-9d9">
-                            <rect key="frame" x="25" y="60" width="343" height="296"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="456"/>
                             <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageView:PUi-la-iVB:image" translatesAutoresizingMaskIntoConstraints="NO" id="PUi-la-iVB" userLabel="Wallpaper Movie Image View">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="160"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="160" id="l4c-jo-NFf"/>
+                                    </constraints>
+                                </imageView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PI2-13-sPU" userLabel="Divider Card">
-                                    <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
+                                    <rect key="frame" x="0.0" y="160" width="393" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="j4H-rk-nXc"/>
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Name Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xhu-jQ-L6q">
-                                    <rect key="frame" x="0.0" y="30.000000000000004" width="343" height="38.333333333333343"/>
+                                    <rect key="frame" x="0.0" y="190" width="393" height="38.333333333333343"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fUC-Sv-6MY" userLabel="Divider Card">
-                                    <rect key="frame" x="0.0" y="68.333333333333343" width="343" height="30"/>
+                                    <rect key="frame" x="0.0" y="228.33333333333334" width="393" height="30.000000000000028"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="L1k-YR-WGw"/>
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sinopse" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kGh-Xo-Q4K" userLabel="Synopsis Title Label">
-                                    <rect key="frame" x="0.0" y="98.333333333333343" width="343" height="31.333333333333343"/>
+                                    <rect key="frame" x="0.0" y="258.33333333333337" width="393" height="31.333333333333314"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="26"/>
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6nc-1T-Hwg" userLabel="Divider Card">
-                                    <rect key="frame" x="0.0" y="129.66666666666666" width="343" height="30"/>
+                                    <rect key="frame" x="0.0" y="289.66666666666663" width="393" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="OlV-4O-fYH"/>
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Synopsis Movie Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qNE-We-fbD" userLabel="Synopsis Movie Label">
-                                    <rect key="frame" x="0.0" y="159.66666666666666" width="343" height="19.333333333333343"/>
+                                    <rect key="frame" x="0.0" y="319.66666666666663" width="393" height="19.333333333333314"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gWu-Wu-chM" userLabel="Divider Card">
-                                    <rect key="frame" x="0.0" y="179" width="343" height="30"/>
+                                    <rect key="frame" x="0.0" y="339" width="393" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="m90-iK-wtr"/>
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age Group Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sZI-bM-4TI" userLabel="Age Group Label">
-                                    <rect key="frame" x="0.0" y="209" width="343" height="17"/>
+                                    <rect key="frame" x="0.0" y="369" width="393" height="17"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bvh-ze-Gp0" userLabel="Divider Card">
-                                    <rect key="frame" x="0.0" y="226" width="343" height="30"/>
+                                    <rect key="frame" x="0.0" y="386" width="393" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="1nk-Hs-tNT"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wZ7-hZ-Kup" userLabel="Rating Stars Card">
-                                    <rect key="frame" x="0.0" y="256" width="343" height="40"/>
+                                    <rect key="frame" x="0.0" y="416" width="393" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="Pxd-1q-jyd"/>
                                     </constraints>
                                 </view>
                             </subviews>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="PUi-la-iVB" secondAttribute="trailing" id="JRn-wu-uYS"/>
+                                <constraint firstItem="PUi-la-iVB" firstAttribute="top" secondItem="AmY-O0-9d9" secondAttribute="top" id="R0p-9c-YmY"/>
+                                <constraint firstItem="PUi-la-iVB" firstAttribute="leading" secondItem="AmY-O0-9d9" secondAttribute="leading" id="loy-qt-w7W"/>
+                            </constraints>
                         </stackView>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="PUi-la-iVB" firstAttribute="leading" secondItem="lQJ-93-bJA" secondAttribute="leading" id="FU3-B3-tOn"/>
-                        <constraint firstItem="NRM-Vq-7jZ" firstAttribute="trailing" secondItem="AmY-O0-9d9" secondAttribute="trailing" constant="25" id="HGz-d1-woU"/>
-                        <constraint firstItem="PUi-la-iVB" firstAttribute="width" secondItem="NRM-Vq-7jZ" secondAttribute="width" id="XKv-U0-5ic"/>
-                        <constraint firstItem="AmY-O0-9d9" firstAttribute="leading" secondItem="NRM-Vq-7jZ" secondAttribute="leading" constant="25" id="aPW-fL-p7I"/>
-                        <constraint firstItem="PUi-la-iVB" firstAttribute="top" secondItem="lQJ-93-bJA" secondAttribute="top" constant="-100" id="bUz-NP-BqO"/>
-                        <constraint firstItem="AmY-O0-9d9" firstAttribute="top" secondItem="PUi-la-iVB" secondAttribute="bottom" id="jRF-T1-Qt7"/>
-                        <constraint firstItem="PUi-la-iVB" firstAttribute="trailing" secondItem="lQJ-93-bJA" secondAttribute="trailing" id="y13-kt-Cgj"/>
+                        <constraint firstItem="AmY-O0-9d9" firstAttribute="top" secondItem="gFy-0T-8V4" secondAttribute="top" id="5Tv-z9-Gpi"/>
+                        <constraint firstAttribute="trailing" secondItem="AmY-O0-9d9" secondAttribute="trailing" id="AgU-aX-wG9"/>
+                        <constraint firstAttribute="bottom" secondItem="AmY-O0-9d9" secondAttribute="bottom" id="MgW-Xp-JFS"/>
+                        <constraint firstItem="AmY-O0-9d9" firstAttribute="leading" secondItem="gFy-0T-8V4" secondAttribute="leading" id="bQU-8h-cqx"/>
                     </constraints>
-                    <viewLayoutGuide key="contentLayoutGuide" id="lQJ-93-bJA"/>
-                    <viewLayoutGuide key="frameLayoutGuide" id="NRM-Vq-7jZ"/>
                 </scrollView>
             </subviews>
-            <viewLayoutGuide key="safeArea" id="tyb-vm-Hlo"/>
             <color key="backgroundColor" red="0.87843137250000003" green="0.8980392157" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="gFy-0T-8V4" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="SpE-ei-8pV"/>
-                <constraint firstItem="gFy-0T-8V4" firstAttribute="trailing" secondItem="tyb-vm-Hlo" secondAttribute="trailing" id="bQE-wP-NCp"/>
-                <constraint firstItem="gFy-0T-8V4" firstAttribute="leading" secondItem="tyb-vm-Hlo" secondAttribute="leading" id="c9P-uF-hLQ"/>
-                <constraint firstAttribute="bottom" secondItem="gFy-0T-8V4" secondAttribute="bottom" id="wn8-0Y-xKy"/>
+                <constraint firstItem="AmY-O0-9d9" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="41H-7V-GQM"/>
+                <constraint firstItem="gFy-0T-8V4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="J7Q-z0-sEt"/>
+                <constraint firstItem="gFy-0T-8V4" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-100" id="Tq7-eD-SsW"/>
+                <constraint firstAttribute="bottom" secondItem="gFy-0T-8V4" secondAttribute="bottom" id="Xoy-FG-iEQ"/>
+                <constraint firstAttribute="trailing" secondItem="gFy-0T-8V4" secondAttribute="trailing" id="ZKu-nL-18B"/>
             </constraints>
             <point key="canvasLocation" x="296.94656488549617" y="29.577464788732396"/>
         </view>
