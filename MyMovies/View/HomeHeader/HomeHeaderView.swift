@@ -11,7 +11,7 @@ class HomeHeaderView: UIView {
   @IBOutlet weak var mainStackView: UIStackView!
 
   @IBOutlet weak var userImageView: UIImageView!
-
+  
   @IBOutlet weak var greetingsLabel: UILabel!
 
   @IBOutlet weak var userNameLabel: UILabel!

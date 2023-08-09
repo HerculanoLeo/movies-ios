@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class MovieDetailsViewController: UIViewController {
 
@@ -23,10 +24,15 @@ class MovieDetailsViewController: UIViewController {
 
   var wallpaperImage: UIImage?
 
+  var retingStarsSubscription: Disposable?
+
   override func viewDidLoad() {
     super.viewDidLoad()
-
     configureView()
+  }
+
+  deinit {
+    self.retingStarsSubscription?.dispose()
   }
 
   func configureView() {
@@ -36,9 +42,6 @@ class MovieDetailsViewController: UIViewController {
     navigationController?.navigationBar.shadowImage = UIImage()
     navigationController?.navigationBar.alpha = 0
 
-    wallpaperImageView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-    wallpaperImageView.layer.cornerRadius = 24
-
     guard let delegate = self.delegate else { fatalError("Delegate must be implemented") }
     let model = delegate.movieModelSelected;
 
@@ -46,9 +49,15 @@ class MovieDetailsViewController: UIViewController {
     sysnopsisMovieLabel.text = model.synopsis
     ageGroupLabel.text = model.ageGroup
 
-    guard let ratingStarsView = Bundle.main.loadNibNamed("RatingStarsView", owner: nil)?.first as? RatingStarsView else { fatalError("Error to create a RatingStarsView") }
+    guard let ratingStarsView = Bundle.main.loadNibNamed("RatingStarsView", owner: nil)?.first as? RatingStarsView else {
+      fatalError("Error to create a RatingStarsView")
+    }
 
     ratingStarsView.configureView(RatingStarsViewModel(stars: model.stars, readOnly: false))
+
+    retingStarsSubscription = ratingStarsView.onChangeValue.subscribe(onNext: {
+      [weak self] newValue in print("Valor trocou \(newValue)")
+    })
 
     ratingStarsCardView.addSubview(ratingStarsView)
 

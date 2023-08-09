@@ -11,17 +11,13 @@ import RxCocoa
 
 class RatingStarsView: UIView {
 
-  let onChangeValue = BehaviorSubject<Int>(value: 0)
+  var markedStar = 0
 
-  var disposable: Disposable?
+  let onChangeValue = PublishSubject<Int>()
 
   @IBOutlet var starImageViewList: [UIImageView]!
 
   var readOnly = true
-
-  deinit {
-    self.disposable?.dispose()
-  }
 
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -33,30 +29,37 @@ class RatingStarsView: UIView {
       starImageView.isUserInteractionEnabled = true
     }
 
-    self.disposable = self.onChangeValue.subscribe(onNext: {
-      [weak self] newValue in
-      if let starImageViewList = self?.starImageViewList {
-        for starImageView in starImageViewList {
-          if newValue > 0 && starImageView.tag < newValue {
-            starImageView.image = UIImage(named: "Marked Star")
-          } else {
-            starImageView.image = UIImage(named: "Unmarked Star")
-          }
-        }
-      }
-    })
   }
 
   func configureView(_ model: RatingStarsViewModel) {
     self.readOnly = model.readOnly
-    self.onChangeValue.onNext(model.markedStars)
+    self.markedStar = model.markedStars
+    self.updateStarsView()
+  }
+
+  func updateStarsView() {
+    if let starImageViewList = starImageViewList {
+      for starImageView in starImageViewList {
+        if markedStar > 0 && starImageView.tag < markedStar {
+          starImageView.image = UIImage(named: "Marked Star")
+        } else {
+          starImageView.image = UIImage(named: "Unmarked Star")
+        }
+      }
+    }
   }
 
   @objc func imageTapped(_ sender: UITapGestureRecognizer) {
     if !self.readOnly {
       if let imageView = sender.view as? UIImageView {
-        self.onChangeValue.onNext(imageView.tag + 1)
+        let newValue = imageView.tag + 1
+        if newValue != markedStar {
+          markedStar = newValue
+          self.updateStarsView()
+          self.onChangeValue.onNext(newValue)
+        }
       }
     }
   }
 }
+

@@ -12,5 +12,5 @@ struct HomeHeaderViewModel {
   var userName: String
 
   var userImageUrl: String?
-
+  
 }
