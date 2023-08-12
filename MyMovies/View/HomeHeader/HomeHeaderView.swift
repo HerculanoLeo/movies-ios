@@ -6,55 +6,56 @@
 //
 import Foundation
 import UIKit
+import RxSwift
 
 class HomeHeaderView: UIView {
-  @IBOutlet weak var mainStackView: UIStackView!
+  private let viewModel = HomeHeaderViewModel()
 
-  @IBOutlet weak var userImageView: UIImageView!
+  @IBOutlet weak private var mainStackView: UIStackView!
+
+  @IBOutlet weak private var userImageView: UIImageView!
   
-  @IBOutlet weak var greetingsLabel: UILabel!
+  @IBOutlet weak private var greetingsLabel: UILabel!
 
-  @IBOutlet weak var userNameLabel: UILabel!
+  @IBOutlet weak private var userNameLabel: UILabel!
 
   private var image: UIImage?
 
-  func configureView(_ model: HomeHeaderViewModel) {
-    self.userNameLabel.text = model.userName
+  private var subject: Disposable?
 
-    if let image = self.image {
-      self.userImageView.image = image
-    } else if let imageLink = model.userImageUrl {
-      UIImage.fromURLString(url: imageLink) { image in
-        self.image = image
-        DispatchQueue.main.async {
-          self.userImageView.image = image
-        }
-      }
-      self.userImageView.layer.cornerRadius = 40
-    }
-    self.calcGreetingsLabel()
+  deinit {
+    self.subject?.dispose()
+  }
 
+  override func awakeFromNib() {
+    super.awakeFromNib()
     guard let dividerView = Bundle.main.loadNibNamed("DividerView", owner: self, options: nil)?.first as? UIView else {
       fatalError("fail to instanciete an DividerView")
     }
-
-    mainStackView.addArrangedSubview(dividerView)
+    self.mainStackView.addArrangedSubview(dividerView)
+    self.greetingsLabel.text = self.viewModel.greetings
+    self.subject = self.viewModel.user.subscribe(
+      onNext: {
+        [weak self] user in
+        self?.userNameLabel.text = user.name
+        if let image = self?.image {
+          self?.userImageView.image = image
+        } else if let imageLink = user.profileImageUrl {
+          UIImage.fromURLString(url: imageLink) { image in
+            self?.image = image
+            DispatchQueue.main.async {
+              self?.userImageView.image = image
+            }
+          }
+          self?.userImageView.layer.cornerRadius = 40
+        }
+      },
+      onError: {
+        error in print(error.localizedDescription)
+      })
   }
 
-  func calcGreetingsLabel() {
-    let calendar = Calendar.current
-    let components = calendar.dateComponents([.hour], from: Date())
-    if let hour = components.hour {
-      if hour > 6 && hour < 12 {
-        greetingsLabel.text = "Good morning!"
-      } else if hour > 12 && hour < 18 {
-        greetingsLabel.text = "Good afternoon!"
-      } else {
-        greetingsLabel.text = "Good evening!"
-      }
-    } else {
-      greetingsLabel.text = "Welcome!"
-    }
+  func configureView(userId: String) {
+    self.viewModel.fetchUser(userId)
   }
-  
 }

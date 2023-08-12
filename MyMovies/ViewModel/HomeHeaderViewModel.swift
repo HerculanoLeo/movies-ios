@@ -6,11 +6,45 @@
 //
 
 import Foundation
+import RxSwift
 
-struct HomeHeaderViewModel {
+class HomeHeaderViewModel {
 
-  var userName: String
+  private let userPublish = PublishSubject<User>()
 
-  var userImageUrl: String?
-  
+  var user: Observable<User> {
+    get {
+      return userPublish.asObserver()
+    }
+  }
+
+  var greetings: String {
+    get {
+      let calendar = Calendar.current
+      let components = calendar.dateComponents([.hour], from: Date())
+      if let hour = components.hour {
+        if hour > 6 && hour < 12 {
+          return "Good morning!"
+        } else if hour > 12 && hour < 18 {
+          return "Good afternoon!"
+        } else {
+          return "Good evening!"
+        }
+      } else {
+        return "Welcome!"
+      }
+    }
+  }
+
+
+  func fetchUser(_ userId: String) {
+    UsersNetworking.findByid(id: userId) {[weak self] result in
+      switch result {
+      case .success(let user):
+        self?.userPublish.onNext(user)
+      case .failure(let error):
+        self?.userPublish.onError(error)
+      }
+    }
+  }
 }
