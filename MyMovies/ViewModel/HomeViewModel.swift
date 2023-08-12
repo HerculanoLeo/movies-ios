@@ -8,10 +8,12 @@
 import Foundation
 import RxSwift
 
-class HomeViewModel {
+class HomeViewModel: MovieDetailsDelegate {
+  var movieSelectedId: String = ""
+
   private let moviesPublish = BehaviorSubject<[Movie]>(value: [])
 
-  var moviesObservable: Observable<[Movie]> {
+  var onChangeMovies: Observable<[Movie]> {
     get {
       return moviesPublish.asObserver()
     }
@@ -28,15 +30,22 @@ class HomeViewModel {
   }
 
   func fetchMovies() {
-    MovieNetworking.findAll() {[weak self] result in
+    MovieAPI.findAll() {[weak self] result in
       switch result {
       case .success(let movies):
-        print(movies)
         self?.moviesPublish.onNext(movies)
       case .failure(let error):
         self?.moviesPublish.onError(error)
       }
     }
+  }
+
+  func selectMovie(_ movie: Movie) {
+    self.movieSelectedId = movie.id
+  }
+
+  func onMovieUpdate() {
+    self.fetchMovies()
   }
 
 }

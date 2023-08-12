@@ -15,6 +15,10 @@ struct Movie: Decodable {
   var stars: Int
   var movieCoverUrl: String;
   var movieWallpaperUrl: String;
+
+  mutating func changeStars(_ stars: Int) {
+    self.stars = stars
+  }
 }
 
 let moviesMock: [Movie] = [

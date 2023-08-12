@@ -6,23 +6,18 @@
 //
 
 import Foundation
+import RxSwift
 
 class RatingStarsViewModel {
-  private var stars: Int
-  var readOnly: Bool = true
-
-  var markedStars: Int {
+  private let starsSubject = PublishSubject<Int>()
+  var onChangeValue: Observable<Int> {
     get {
-      return stars
-    }
-    set {
-      stars = validateStars(newValue)
+      return self.starsSubject.asObserver()
     }
   }
 
-  init(stars: Int, readOnly: Bool = true) {
-    self.stars = validateStars(stars)
-    self.readOnly = readOnly
+  func changeValue(_ stars: Int) {
+    self.starsSubject.onNext(validateStars(stars))
   }
 }
 

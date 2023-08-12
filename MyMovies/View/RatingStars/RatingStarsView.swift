@@ -7,17 +7,15 @@
 
 import UIKit
 import RxSwift
-import RxCocoa
 
 class RatingStarsView: UIView {
+  @IBOutlet private var starImageViewList: [UIImageView]!
 
-  var markedStar = 0
+  private var viewMode = RatingStarsViewModel()
 
-  let onChangeValue = PublishSubject<Int>()
+  var delegate: RatingStarsDelegate?
 
-  @IBOutlet var starImageViewList: [UIImageView]!
-
-  var readOnly = true
+  private var starsSubscription: Disposable?
 
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -29,18 +27,21 @@ class RatingStarsView: UIView {
       starImageView.isUserInteractionEnabled = true
     }
 
-  }
-
-  func configureView(_ model: RatingStarsViewModel) {
-    self.readOnly = model.readOnly
-    self.markedStar = model.markedStars
-    self.updateStarsView()
+    self.starsSubscription = self.viewMode.onChangeValue.subscribe(
+      onNext: {[weak self] stars in
+        if let delegate = self?.delegate {
+          delegate.onChangeValue?(stars)
+        }
+      }
+    )
   }
 
   func updateStarsView() {
+    guard let delegate = self.delegate else { fatalError("delegate must be implemented") }
+
     if let starImageViewList = starImageViewList {
       for starImageView in starImageViewList {
-        if markedStar > 0 && starImageView.tag < markedStar {
+        if delegate.markedStars > 0 && starImageView.tag < delegate.markedStars {
           starImageView.image = UIImage(named: "Marked Star")
         } else {
           starImageView.image = UIImage(named: "Unmarked Star")
@@ -50,13 +51,14 @@ class RatingStarsView: UIView {
   }
 
   @objc func imageTapped(_ sender: UITapGestureRecognizer) {
-    if !self.readOnly {
+    guard let delegate = self.delegate else { fatalError("delegate must be implemented") }
+
+    if !delegate.readOnly {
       if let imageView = sender.view as? UIImageView {
         let newValue = imageView.tag + 1
-        if newValue != markedStar {
-          markedStar = newValue
+        if newValue != delegate.markedStars {
+          self.viewMode.changeValue(newValue)
           self.updateStarsView()
-          self.onChangeValue.onNext(newValue)
         }
       }
     }

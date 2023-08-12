@@ -7,7 +7,8 @@
 
 import Foundation
 
-protocol MovieDetailsDelegate {
-  var movieModelSelected: MovieDetailsViewModel { get }
+protocol MovieDetailsDelegate: AnyObject {
+  var movieSelectedId: String { get }
   func selectMovie(_ movie: Movie) -> Void
+  func onMovieUpdate() -> Void
 }

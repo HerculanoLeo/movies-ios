@@ -13,6 +13,8 @@ class HomeViewController: UIViewController {
 
   private let viewModel = HomeViewModel()
 
+  private let refreshControl = UIRefreshControl()
+
   private var headerUserView: HomeHeaderView?
 
   override func viewDidLoad() {
@@ -33,15 +35,25 @@ class HomeViewController: UIViewController {
     self.headerUserView = headerUserView
     self.headerUserView?.configureView(userId: "1")
 
-    let _ = self.viewModel.moviesObservable.subscribe(
+    refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+    tableView.addSubview(refreshControl)
+
+    let _ = self.viewModel.onChangeMovies.subscribe(
       onNext: {[weak self] _ in
+        self?.refreshControl.endRefreshing()
         self?.tableView.reloadData()
       },
-      onError: { error in
+      onError: {[weak self] error in
+        self?.refreshControl.endRefreshing()
         print(error.localizedDescription)
       }
     )
 
+    self.refreshData()
+  }
+
+  @objc func refreshData() {
+    self.headerUserView?.configureView(userId: "1")
     self.viewModel.fetchMovies()
   }
 
@@ -97,9 +109,9 @@ extension HomeViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if indexPath.section == 1 {
       let movie = self.viewModel.movies[indexPath.row]
-      self.selectMovie(movie)
+      self.viewModel.selectMovie(movie)
       let movieDetailsViewContoller = MovieDetailsViewController(nibName: "MovieDetailsViewController", bundle: nil)
-      movieDetailsViewContoller.delegate = self
+      movieDetailsViewContoller.delegate = self.viewModel
       self.navigationController?.pushViewController(movieDetailsViewContoller, animated: true)
     }
   }
@@ -121,18 +133,4 @@ extension HomeViewController: UITableViewDelegate {
       return movieTitleHeaderView
     }
   }
-}
-
-extension HomeViewController: MovieDetailsDelegate {
-  var movieModelSelected: MovieDetailsViewModel {
-    //    if let movie = self.movieSelected {
-    //      return MovieDetailsViewModel(id: movie.id, name: movie.name, synopsis: movie.synopsis, ageGroup: movie.ageGroup, stars: movie.stars, wallpaperUrl: movie.movieWallpaperUrl)
-    //    }
-    return MovieDetailsViewModel(id: nil, name: "", synopsis: "", ageGroup: "", stars: 0, wallpaperUrl: "")
-  }
-
-  func selectMovie(_ movie: Movie) {
-
-  }
-
 }
