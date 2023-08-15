@@ -10,8 +10,9 @@ import Alamofire
 
 private enum MovieEnpoints: URLRequestConvertible {
   case findAll
+  case register(requestEntity: MovieRegisterRequest)
   case findById(id: String)
-  case update(id: String, requestEntity: MovieRequestUpdate)
+  case update(id: String, requestEntity: MovieUpdateRequest)
 
   var jsonEncoder: JSONEncoder {
     return JSONEncoder()
@@ -23,6 +24,8 @@ private enum MovieEnpoints: URLRequestConvertible {
       return .get
     case.update:
       return .put
+    case .register:
+      return .post
     }
   }
 
@@ -36,7 +39,7 @@ private enum MovieEnpoints: URLRequestConvertible {
         url.path = "/movies/\(id)"
         return try url.asURL()
 
-      case .findAll:
+      case .findAll, .register:
         url.path = "/movies"
         return try url.asURL()
       }
@@ -49,6 +52,8 @@ private enum MovieEnpoints: URLRequestConvertible {
     do {
       switch self {
       case .update(_, let requestEntity):
+        return try jsonEncoder.encode(requestEntity)
+      case .register(let requestEntity):
         return try jsonEncoder.encode(requestEntity)
       default:
         return nil
@@ -84,7 +89,13 @@ class MovieAPI {
     }
   }
 
-  class func update(id: String, requestEntity: MovieRequestUpdate, completion: @escaping (Result<Data?, AFError>) -> Void) {
+  class func register(requestEntity: MovieRegisterRequest, completion:  @escaping (Result<Movie, AFError>) -> Void) {
+    AF.request(MovieEnpoints.register(requestEntity: requestEntity)).responseDecodable(of: Movie.self) { response in
+      completion(response.result)
+    }
+  }
+
+  class func update(id: String, requestEntity: MovieUpdateRequest, completion: @escaping (Result<Data?, AFError>) -> Void) {
     AF.request(MovieEnpoints.update(id: id, requestEntity: requestEntity)).response { response in
       completion(response.result)
     }

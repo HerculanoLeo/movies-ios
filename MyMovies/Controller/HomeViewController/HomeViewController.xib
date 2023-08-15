@@ -3,25 +3,52 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="MyMovies" customModuleProvider="target">
             <connections>
+                <outlet property="addMovieButton" destination="Lja-7v-Q96" id="7h5-iO-fXR"/>
                 <outlet property="tableView" destination="ofv-KT-WcR" id="dBj-Fz-T8m"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ofv-KT-WcR">
-                    <rect key="frame" x="0.0" y="59" width="375" height="574"/>
+                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                     <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ccq-dE-OBx">
+                    <rect key="frame" x="318" y="728" width="60" height="60"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lja-7v-Q96">
+                            <rect key="frame" x="2" y="2" width="56" height="56"/>
+                            <color key="tintColor" red="0.32941176470588235" green="0.396078431372549" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <size key="titleShadowOffset" width="12" height="20"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="filled">
+                                <imageReference key="image" image="plus.circle.fill" catalog="system" symbolScale="large"/>
+                                <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="baseBackgroundColor" red="0.3294117647" green="0.39607843139999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </buttonConfiguration>
+                        </button>
+                    </subviews>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="Lja-7v-Q96" firstAttribute="top" secondItem="ccq-dE-OBx" secondAttribute="top" constant="2" id="8eC-qR-L9u"/>
+                        <constraint firstAttribute="bottom" secondItem="Lja-7v-Q96" secondAttribute="bottom" constant="2" id="HwH-Ao-xgj"/>
+                        <constraint firstItem="Lja-7v-Q96" firstAttribute="leading" secondItem="ccq-dE-OBx" secondAttribute="leading" constant="2" id="MB4-Re-SkH"/>
+                        <constraint firstAttribute="width" constant="60" id="dcb-XS-Shy"/>
+                        <constraint firstAttribute="trailing" secondItem="Lja-7v-Q96" secondAttribute="trailing" constant="2" id="vCU-4g-Sp9"/>
+                        <constraint firstAttribute="height" constant="60" id="xMC-Wa-3au"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" red="0.8784313725490196" green="0.89803921568627454" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -29,9 +56,14 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ofv-KT-WcR" secondAttribute="trailing" id="F5u-wP-R4T"/>
                 <constraint firstItem="ofv-KT-WcR" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Mld-MY-vvU"/>
                 <constraint firstItem="ofv-KT-WcR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="W3e-Zd-Gbr"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="ccq-dE-OBx" secondAttribute="bottom" constant="30" id="XFA-67-irP"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ccq-dE-OBx" secondAttribute="trailing" constant="15" id="gnu-SB-UhN"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="ofv-KT-WcR" secondAttribute="bottom" id="k72-tt-bH7"/>
             </constraints>
-            <point key="canvasLocation" x="265" y="-23"/>
+            <point key="canvasLocation" x="264.8854961832061" y="-23.239436619718312"/>
         </view>
     </objects>
+    <resources>
+        <image name="plus.circle.fill" catalog="system" width="128" height="123"/>
+    </resources>
 </document>

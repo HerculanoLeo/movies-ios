@@ -55,12 +55,12 @@ class MovieDetailsViewController: UIViewController {
     self.movieSubscription = self.viewModel.onMovieChange.subscribe(
       onNext: {[weak self] movie in
         self?.movieNameLabel.text = movie.name
-        self?.sysnopsisMovieLabel.text = movie.synopsis
+        self?.sysnopsisMovieLabel.text = movie.synopsys
         self?.ageGroupLabel.text = movie.ageGroup
 
         self?.ratingStarsView?.updateStarsView()
 
-        UIImage.fromURLString(url: movie.movieWallpaperUrl) { image in
+        UIImage.fromURLString(urlStr: movie.movieWallpaperUrl) { image in
           DispatchQueue.main.async {
             self?.wallpaperImageView.image = image
             self?.wallpaperImageView.contentMode = .scaleAspectFill
@@ -91,7 +91,7 @@ extension MovieDetailsViewController: RatingStarsDelegate {
 
   func onChangeValue(_ stars: Int) {
     if let movie = self.viewModel.movie {
-      let requestEntity = MovieRequestUpdate(id: movie.id, name: movie.name, synopsis: movie.synopsis, ageGroup: movie.ageGroup, stars: stars, movieCoverUrl: movie.movieCoverUrl, movieWallpaperUrl: movie.movieWallpaperUrl)
+      let requestEntity = MovieUpdateRequest(id: movie.id, name: movie.name, synopsys: movie.synopsys, ageGroup: movie.ageGroup, stars: stars, movieCoverUrl: movie.movieCoverUrl, movieWallpaperUrl: movie.movieWallpaperUrl)
       MovieAPI.update(id: movie.id, requestEntity: requestEntity) {[weak self] response in
         self?.fetchData()
         self?.delegate?.onMovieUpdate()

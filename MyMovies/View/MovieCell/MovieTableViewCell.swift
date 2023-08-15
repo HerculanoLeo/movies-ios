@@ -42,7 +42,7 @@ class MovieTableViewCell: UITableViewCell {
 
     self.movieImageView.image = UIImage(named: "Logo")
 
-    UIImage.fromURLString(url: model.imageUrl) { image in
+    UIImage.fromURLString(urlStr: model.imageUrl) { image in
       if image != nil {
         DispatchQueue.main.async {
           self.movieImageView.image = image

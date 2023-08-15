@@ -9,9 +9,9 @@ import Foundation
 import UIKit
 
 extension UIImage {
-  class func fromURLString(url: String, completion: @escaping (UIImage?) -> Void) {
-    if let urlRequest = URL(string: url) {
-      let task = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+  class func fromURLString(urlStr: String, completion: @escaping (UIImage?) -> Void) {
+    if let url = URL(string: urlStr) {
+      let task = URLSession.shared.dataTask(with: url) { data, response, error in
         guard let data = data, error == nil else {
           completion(nil)
           return

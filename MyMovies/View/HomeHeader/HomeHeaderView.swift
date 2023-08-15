@@ -41,7 +41,7 @@ class HomeHeaderView: UIView {
         if let image = self?.image {
           self?.userImageView.image = image
         } else if let imageLink = user.profileImageUrl {
-          UIImage.fromURLString(url: imageLink) { image in
+          UIImage.fromURLString(urlStr: imageLink) { image in
             self?.image = image
             DispatchQueue.main.async {
               self?.userImageView.image = image

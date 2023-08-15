@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct MovieRequestUpdate: Encodable {
+struct MovieUpdateRequest: Encodable {
   var id: String
   var name: String
-  var synopsis: String
+  var synopsys: String
   var ageGroup: String
   var stars: Int
   var movieCoverUrl: String;

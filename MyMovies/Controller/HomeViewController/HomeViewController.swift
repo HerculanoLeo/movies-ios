@@ -11,6 +11,8 @@ class HomeViewController: UIViewController {
   
   @IBOutlet weak var tableView: UITableView!
 
+  @IBOutlet weak var addMovieButton: UIButton!
+
   private let viewModel = HomeViewModel()
 
   private let refreshControl = UIRefreshControl()
@@ -50,11 +52,22 @@ class HomeViewController: UIViewController {
     )
 
     self.refreshData()
+
+    addMovieButton.layer.cornerRadius = 28
+    addMovieButton.layer.masksToBounds = true
+
+    addMovieButton.addTarget(self, action: #selector(navigateToAddMovie), for: .touchDown)
   }
 
   @objc func refreshData() {
     self.headerUserView?.configureView(userId: "1")
     self.viewModel.fetchMovies()
+  }
+
+  @objc func navigateToAddMovie() {
+    let addMovieViewController = AddMovieViewController(nibName: "AddMovieViewController", bundle: nil)
+    addMovieViewController.delegate = self
+    self.navigationController?.pushViewController(addMovieViewController, animated: true)
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -101,7 +114,7 @@ extension HomeViewController: UITableViewDataSource {
 
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     if indexPath.section == 1 {
-      return 140
+      return UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.phone ? 140 : 440
     }
     return 0
   }
@@ -132,5 +145,11 @@ extension HomeViewController: UITableViewDelegate {
       }
       return movieTitleHeaderView
     }
+  }
+}
+
+extension HomeViewController: AddMovieDelegate {
+  func onMovieRegistered() {
+    self.refreshData()
   }
 }

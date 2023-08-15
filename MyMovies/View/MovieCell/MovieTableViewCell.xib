@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="ipad12_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -22,13 +22,21 @@
                                 <rect key="frame" x="0.0" y="0.0" width="87" height="100"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Name" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QnQ-o2-dEX">
-                                <rect key="frame" x="102" y="20" width="173" height="19.333333333333329"/>
+                                <rect key="frame" x="102" y="20" width="173" height="76.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                                </variation>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="5Jf-0o-C3v" userLabel="Rating Stars Stack View">
-                                <rect key="frame" x="102" y="54.333333333333321" width="168" height="25.666666666666664"/>
+                                <rect key="frame" x="102" y="28" width="168" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="26" id="wgH-Wv-qbm">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="52"/>
+                                    </constraint>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.32941176470588235" green="0.396078431372549" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -36,7 +44,6 @@
                             <constraint firstItem="GSJ-wF-B6F" firstAttribute="height" secondItem="Cme-Ph-Wyb" secondAttribute="height" id="7X7-VO-wJ1"/>
                             <constraint firstItem="QnQ-o2-dEX" firstAttribute="top" secondItem="Cme-Ph-Wyb" secondAttribute="top" constant="20" id="8BI-la-mfn"/>
                             <constraint firstAttribute="trailing" secondItem="QnQ-o2-dEX" secondAttribute="trailing" constant="15" id="8Xg-n4-nLY"/>
-                            <constraint firstItem="5Jf-0o-C3v" firstAttribute="top" secondItem="QnQ-o2-dEX" secondAttribute="bottom" constant="15" id="B2E-eP-3U5"/>
                             <constraint firstItem="GSJ-wF-B6F" firstAttribute="width" secondItem="Cme-Ph-Wyb" secondAttribute="width" multiplier="0.3" id="K0m-4j-pWy"/>
                             <constraint firstAttribute="trailing" secondItem="5Jf-0o-C3v" secondAttribute="trailing" constant="20" id="Rmq-63-6RK"/>
                             <constraint firstAttribute="bottom" secondItem="5Jf-0o-C3v" secondAttribute="bottom" constant="20" id="dBp-xc-yfp"/>
@@ -65,6 +72,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Logo" width="154" height="167"/>
+        <image name="Logo" width="154" height="174"/>
     </resources>
 </document>
