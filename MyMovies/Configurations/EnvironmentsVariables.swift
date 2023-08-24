@@ -14,10 +14,13 @@ class EnvironmentsVariables {
 
   private let config: [String: Any]
 
-  var baseUrl: URL {
+  var baseUrl: URLComponents {
     get {
       guard let urlString = config["BASE_URL"] as? String else { fatalError("BASE_URL not found") }
-      guard let baseUrl = URL(string: urlString) else { fatalError("BASE_URL is invalid") }
+      guard let url = URL(string: urlString) else { fatalError("BASE_URL is invalid") }
+      guard let baseUrl = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
+        fatalError("Error to generate URLComponents")
+      }
       return baseUrl
     }
   }

@@ -8,12 +8,8 @@
 import Foundation
 import Alamofire
 
-private enum UsersEndpoints: URLRequestConvertible {
+private enum UsersEndpoints: NetworkIntegration {
   case findById(id: String)
-
-  var jsonEncoder: JSONEncoder {
-    return JSONEncoder()
-  }
 
   var httpMethod: HTTPMethod {
     switch self {
@@ -23,34 +19,17 @@ private enum UsersEndpoints: URLRequestConvertible {
   }
 
   var urlRequest: URL {
-    guard var url = URLComponents(url: EnvironmentsVariables.shared.baseUrl, resolvingAgainstBaseURL: true) else {
-      fatalError("Error to generate URLComponents")
+    var url = EnvironmentsVariables.shared.baseUrl
+
+    switch self {
+    case .findById(let id):
+      url.path = "/users/\(id)"
     }
-    do {
-      switch self {
-      case .findById(let id):
-        url.path = "/users/\(id)"
-        return try url.asURL()
-      }
-    } catch {
-      fatalError("Error to generate URL")
-    }
+    return try! url.asURL()
   }
 
   var httpBody: Data? {
     return nil
-  }
-
-  func asURLRequest() throws -> URLRequest {
-    do {
-      var request = try URLRequest(url: urlRequest, method: httpMethod)
-      request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-      request.httpBody = httpBody
-      return request
-    }catch {
-      print(error.localizedDescription)
-      throw error
-    }
   }
 }
 

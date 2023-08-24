@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		7835F782FF787149E2FB6310 /* Pods_MyMovies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 192AE67FE9B85D2BE036C4E2 /* Pods_MyMovies.framework */; };
+		850ACA012A94210900E9A8EF /* ObservableErrorWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850ACA002A94210900E9A8EF /* ObservableErrorWrapper.swift */; };
+		850ACA082A94319800E9A8EF /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850ACA072A94319800E9A8EF /* UIViewController+Extensions.swift */; };
+		850ACA0B2A9431AA00E9A8EF /* UIToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850ACA0A2A9431AA00E9A8EF /* UIToastView.swift */; };
 		850FDD112A8870F600A39B87 /* UIInputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850FDD102A8870F600A39B87 /* UIInputTextView.swift */; };
 		8518D95A2A86FA410006397C /* UsersAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8518D9592A86FA410006397C /* UsersAPI.swift */; };
 		8518D95C2A8729170006397C /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8518D95B2A8729170006397C /* HomeViewModel.swift */; };
@@ -35,6 +38,7 @@
 		854389E42A7F26C5009AB0EA /* MovieTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854389E32A7F26C5009AB0EA /* MovieTableViewModel.swift */; };
 		854389E92A7F378D009AB0EA /* MoviesTitleHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 854389E82A7F378D009AB0EA /* MoviesTitleHeaderView.xib */; };
 		855BCFAB2A86DED1008F34D9 /* fake_api.json in Resources */ = {isa = PBXBuildFile; fileRef = 855BCFAA2A86DED1008F34D9 /* fake_api.json */; };
+		85794D4C2A96BB24006BAD31 /* NetworkIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85794D4B2A96BB24006BAD31 /* NetworkIntegration.swift */; };
 		85A879D72A86E7F900280751 /* Environments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A879D62A86E7F900280751 /* Environments.swift */; };
 		85A879D92A86ECAE00280751 /* Config-Dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85A879D82A86ECAE00280751 /* Config-Dev.plist */; };
 		85A879DB2A86ED4A00280751 /* Config-Local.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85A879DA2A86ED4A00280751 /* Config-Local.plist */; };
@@ -58,6 +62,9 @@
 		4413134D3F405F2CA300A4A8 /* Pods-MyMovies.release (dev).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMovies.release (dev).xcconfig"; path = "Target Support Files/Pods-MyMovies/Pods-MyMovies.release (dev).xcconfig"; sourceTree = "<group>"; };
 		4F504ECD26429C7B93F029E5 /* Pods-MyMovies.debug (dev).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMovies.debug (dev).xcconfig"; path = "Target Support Files/Pods-MyMovies/Pods-MyMovies.debug (dev).xcconfig"; sourceTree = "<group>"; };
 		7D91E9C48B4832FD615DF9C0 /* Pods-MyMovies.release (local).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMovies.release (local).xcconfig"; path = "Target Support Files/Pods-MyMovies/Pods-MyMovies.release (local).xcconfig"; sourceTree = "<group>"; };
+		850ACA002A94210900E9A8EF /* ObservableErrorWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableErrorWrapper.swift; sourceTree = "<group>"; };
+		850ACA072A94319800E9A8EF /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		850ACA0A2A9431AA00E9A8EF /* UIToastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIToastView.swift; sourceTree = "<group>"; };
 		850FDD102A8870F600A39B87 /* UIInputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIInputTextView.swift; sourceTree = "<group>"; };
 		8518D9592A86FA410006397C /* UsersAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersAPI.swift; sourceTree = "<group>"; };
 		8518D95B2A8729170006397C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -87,6 +94,7 @@
 		854389E32A7F26C5009AB0EA /* MovieTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewModel.swift; sourceTree = "<group>"; };
 		854389E82A7F378D009AB0EA /* MoviesTitleHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoviesTitleHeaderView.xib; sourceTree = "<group>"; };
 		855BCFAA2A86DED1008F34D9 /* fake_api.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fake_api.json; sourceTree = "<group>"; };
+		85794D4B2A96BB24006BAD31 /* NetworkIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkIntegration.swift; sourceTree = "<group>"; };
 		85A879D62A86E7F900280751 /* Environments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environments.swift; sourceTree = "<group>"; };
 		85A879D82A86ECAE00280751 /* Config-Dev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Config-Dev.plist"; sourceTree = "<group>"; };
 		85A879DA2A86ED4A00280751 /* Config-Local.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Config-Local.plist"; sourceTree = "<group>"; };
@@ -120,6 +128,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		850AC9FF2A9420DD00E9A8EF /* Reactive */ = {
+			isa = PBXGroup;
+			children = (
+				850ACA002A94210900E9A8EF /* ObservableErrorWrapper.swift */,
+			);
+			path = Reactive;
+			sourceTree = "<group>";
+		};
+		850ACA092A9431A400E9A8EF /* UIToastView */ = {
+			isa = PBXGroup;
+			children = (
+				850ACA0A2A9431AA00E9A8EF /* UIToastView.swift */,
+			);
+			path = UIToastView;
+			sourceTree = "<group>";
+		};
 		850FDD0F2A8870D400A39B87 /* UIInputTextView */ = {
 			isa = PBXGroup;
 			children = (
@@ -218,6 +242,7 @@
 		854389D12A7EDDD2009AB0EA /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				850ACA072A94319800E9A8EF /* UIViewController+Extensions.swift */,
 				854389D22A7EDE6E009AB0EA /* UIImage+Extensions.swift */,
 			);
 			path = Extensions;
@@ -262,6 +287,7 @@
 		8545D8042A7B38C300463757 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				850ACA092A9431A400E9A8EF /* UIToastView */,
 				85DA7A422A8AACB500FAEB45 /* UIInputTextAreaView */,
 				850FDD0F2A8870D400A39B87 /* UIInputTextView */,
 				85422A8C2A7FE076009297D7 /* RatingStars */,
@@ -289,6 +315,7 @@
 		8545D8062A7B38DC00463757 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				850AC9FF2A9420DD00E9A8EF /* Reactive */,
 				85D4EE1F2A87F78200E42E17 /* Movie */,
 				852118482A80212C0073BBE9 /* User.swift */,
 			);
@@ -300,6 +327,7 @@
 			children = (
 				8518D9592A86FA410006397C /* UsersAPI.swift */,
 				8518D95D2A87297C0006397C /* MovieAPI.swift */,
+				85794D4B2A96BB24006BAD31 /* NetworkIntegration.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -500,6 +528,7 @@
 				85DA7A412A8AA12300FAEB45 /* InputViewModel.swift in Sources */,
 				852118492A80212C0073BBE9 /* User.swift in Sources */,
 				85DA7A482A8AFCD900FAEB45 /* MovieRegisterRequest.swift in Sources */,
+				850ACA082A94319800E9A8EF /* UIViewController+Extensions.swift in Sources */,
 				85BCC6592A86F14F0084A5EA /* EnvironmentsVariables.swift in Sources */,
 				854389CD2A7ED3C0009AB0EA /* HomeHeaderView.swift in Sources */,
 				8518D95C2A8729170006397C /* HomeViewModel.swift in Sources */,
@@ -511,10 +540,13 @@
 				85D4EE212A87F79E00E42E17 /* MovieUpdateRequest.swift in Sources */,
 				852118592A80393B0073BBE9 /* HomeViewController.swift in Sources */,
 				8518D95E2A87297C0006397C /* MovieAPI.swift in Sources */,
+				850ACA0B2A9431AA00E9A8EF /* UIToastView.swift in Sources */,
+				850ACA012A94210900E9A8EF /* ObservableErrorWrapper.swift in Sources */,
 				851AC6D32A7B382D0028D9AF /* AppDelegate.swift in Sources */,
 				854389D32A7EDE6E009AB0EA /* UIImage+Extensions.swift in Sources */,
 				8518D95A2A86FA410006397C /* UsersAPI.swift in Sources */,
 				85D4EE1E2A87CB4000E42E17 /* RatingStarsDelegate.swift in Sources */,
+				85794D4C2A96BB24006BAD31 /* NetworkIntegration.swift in Sources */,
 				850FDD112A8870F600A39B87 /* UIInputTextView.swift in Sources */,
 				85DA7A442A8AACD800FAEB45 /* UIInputTextAreaView.swift in Sources */,
 				854389D02A7ED9DC009AB0EA /* HomeHeaderViewModel.swift in Sources */,

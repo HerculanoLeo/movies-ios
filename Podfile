@@ -7,7 +7,7 @@ target 'MyMovies' do
   # Comment the next line if you don't want to use dynamic frameworks
   # Pods for MyMovie
 
-  pod 'RxSwift', '6.5.0'
-  pod 'RxCocoa', '6.5.0'
-  pod 'Alamofire', '5.7.0'
+  pod 'RxSwift', '~> 6.5.0'
+  pod 'RxCocoa', '~> 6.5.0'
+  pod 'Alamofire', '~> 5.7.0'
 end

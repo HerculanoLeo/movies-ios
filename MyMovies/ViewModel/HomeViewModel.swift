@@ -11,9 +11,9 @@ import RxSwift
 class HomeViewModel: MovieDetailsDelegate {
   var movieSelectedId: String = ""
 
-  private let moviesPublish = BehaviorSubject<[Movie]>(value: [])
+  private let moviesPublish = BehaviorSubject<ObservableErrorWrapper<[Movie]>>(value: .success([]))
 
-  var onChangeMovies: Observable<[Movie]> {
+  var onChangeMovies: Observable<ObservableErrorWrapper<[Movie]>> {
     get {
       return moviesPublish.asObserver()
     }
@@ -22,10 +22,17 @@ class HomeViewModel: MovieDetailsDelegate {
   var movies: [Movie] {
     get {
       do {
-        return try moviesPublish.value()
+        let wrapper = try moviesPublish.value()
+        switch wrapper {
+        case .success(let values):
+          return values ?? []
+        case .error(_):
+          return []
+        }
       } catch {
         return []
       }
+
     }
   }
 
@@ -33,9 +40,9 @@ class HomeViewModel: MovieDetailsDelegate {
     MovieAPI.findAll() {[weak self] result in
       switch result {
       case .success(let movies):
-        self?.moviesPublish.onNext(movies)
+        self?.moviesPublish.onNext(.success(movies))
       case .failure(let error):
-        self?.moviesPublish.onError(error)
+        self?.moviesPublish.onNext(.error(error))
       }
     }
   }

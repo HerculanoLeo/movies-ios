@@ -8,15 +8,11 @@
 import Foundation
 import Alamofire
 
-private enum MovieEnpoints: URLRequestConvertible {
+private enum MovieEnpoints: NetworkIntegration {
   case findAll
   case register(requestEntity: MovieRegisterRequest)
   case findById(id: String)
   case update(id: String, requestEntity: MovieUpdateRequest)
-
-  var jsonEncoder: JSONEncoder {
-    return JSONEncoder()
-  }
 
   var httpMethod: HTTPMethod {
     switch self {
@@ -30,48 +26,25 @@ private enum MovieEnpoints: URLRequestConvertible {
   }
 
   var urlRequest: URL {
-    guard var url = URLComponents(url: EnvironmentsVariables.shared.baseUrl, resolvingAgainstBaseURL: true) else {
-      fatalError("Error to generate URLComponents")
-    }
-    do {
-      switch self {
-      case .findById(let id), .update(let id, _):
-        url.path = "/movies/\(id)"
-        return try url.asURL()
+    var url = EnvironmentsVariables.shared.baseUrl
 
-      case .findAll, .register:
-        url.path = "/movies"
-        return try url.asURL()
-      }
-    } catch {
-      fatalError("Error to generate URL")
+    switch self {
+    case .findById(let id), .update(let id, _):
+      url.path = "/movies/\(id)"
+    case .findAll, .register:
+      url.path = "/movies"
     }
+
+    return try! url.asURL()
   }
 
   var httpBody: Data? {
-    do {
-      switch self {
-      case .update(_, let requestEntity):
-        return try jsonEncoder.encode(requestEntity)
-      case .register(let requestEntity):
-        return try jsonEncoder.encode(requestEntity)
-      default:
-        return nil
-      }
-    } catch {
-      fatalError("Error to generate Body")
-    }
-  }
-
-  func asURLRequest() throws -> URLRequest {
-    do {
-      var request = try URLRequest(url: urlRequest, method: httpMethod)
-      request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-      request.httpBody = httpBody
-      return request
-    }catch {
-      print(error.localizedDescription)
-      throw error
+    switch self {
+    case .register(let requestEntity as Encodable),
+         .update(_, let requestEntity as Encodable):
+      return try! jsonEncoder.encode(requestEntity)
+    default:
+      return nil
     }
   }
 }

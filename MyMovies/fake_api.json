@@ -71,13 +71,13 @@
       "movieWallpaperUrl": "https://duastorres.com.br/wp-content/uploads/2018/04/Age-of-Ultron.jpg"
     },
     {
-      "id": "8",
-      "name": "Doutor Estranho no Multiverso da Loucura",
-      "synopsys": "Em Doutor Estranho no Multiverso da Loucura, após derrotar Dormammu e enfrentar Thanos nos eventos de Vingadores: Ultimato, o Mago Supremo, Stephen Strange (Benedict Cumberbatch), e seu parceiro Wong (Benedict Wong), continuam suas pesquisas sobre a Joia do Tempo. Mas um velho amigo que virou inimigo coloca um ponto final nos seus planos e faz com que Strange desencadeie um mal indescritível, o obrigando a enfrentar uma nova e poderosa ameaça. O longa se conecta com a série do Disney+ WandaVision e tem relação também com Loki. O longa pertence a fase 4 do MCU onde a realidade do universo pode entrar em colapso por causa do mesmo feitiço que trouxe os vilões do Teioso para o mundo dos Vingadores e o Mago Supremo precisará contar com a ajuda de Wanda (Elizabeth Olsen), que vive isolada desde os eventos de WandaVision.",
       "ageGroup": "Não recomendado para menores de 14 anos",
-      "stars": 1,
       "movieCoverUrl": "https://br.web.img3.acsta.net/c_310_420/pictures/22/02/14/18/29/1382589.png",
-      "movieWallpaperUrl": "https://image.tmdb.org/t/p/original/d0LfrKXMogbJujV6Mc7L9cUssC8.jpg"
+      "id": "8",
+      "movieWallpaperUrl": "https://image.tmdb.org/t/p/original/d0LfrKXMogbJujV6Mc7L9cUssC8.jpg",
+      "stars": 1,
+      "synopsys": "Em Doutor Estranho no Multiverso da Loucura, após derrotar Dormammu e enfrentar Thanos nos eventos de Vingadores: Ultimato, o Mago Supremo, Stephen Strange (Benedict Cumberbatch), e seu parceiro Wong (Benedict Wong), continuam suas pesquisas sobre a Joia do Tempo. Mas um velho amigo que virou inimigo coloca um ponto final nos seus planos e faz com que Strange desencadeie um mal indescritível, o obrigando a enfrentar uma nova e poderosa ameaça. O longa se conecta com a série do Disney+ WandaVision e tem relação também com Loki. O longa pertence a fase 4 do MCU onde a realidade do universo pode entrar em colapso por causa do mesmo feitiço que trouxe os vilões do Teioso para o mundo dos Vingadores e o Mago Supremo precisará contar com a ajuda de Wanda (Elizabeth Olsen), que vive isolada desde os eventos de WandaVision.",
+      "name": "Doutor Estranho no Multiverso da Loucura"
     }
   ]
 }

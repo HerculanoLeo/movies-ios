@@ -10,9 +10,9 @@ import RxSwift
 
 class HomeHeaderViewModel {
 
-  private let userPublish = PublishSubject<User>()
+  private let userPublish = PublishSubject<ObservableErrorWrapper<User>>()
 
-  var user: Observable<User> {
+  var user: Observable<ObservableErrorWrapper<User>> {
     get {
       return userPublish.asObserver()
     }
@@ -41,9 +41,9 @@ class HomeHeaderViewModel {
     UsersAPI.findByid(id: userId) {[weak self] result in
       switch result {
       case .success(let user):
-        self?.userPublish.onNext(user)
+        self?.userPublish.onNext(.success(user))
       case .failure(let error):
-        self?.userPublish.onError(error)
+        self?.userPublish.onNext(.error(error))
       }
     }
   }

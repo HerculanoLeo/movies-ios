@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class HomeViewController: UIViewController {
   
@@ -18,6 +20,8 @@ class HomeViewController: UIViewController {
   private let refreshControl = UIRefreshControl()
 
   private var headerUserView: HomeHeaderView?
+
+  private var disposeBag = DisposeBag()
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -37,26 +41,32 @@ class HomeViewController: UIViewController {
     self.headerUserView = headerUserView
     self.headerUserView?.configureView(userId: "1")
 
-    refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
-    tableView.addSubview(refreshControl)
+    tableView.refreshControl = refreshControl
 
-    let _ = self.viewModel.onChangeMovies.subscribe(
-      onNext: {[weak self] _ in
-        self?.refreshControl.endRefreshing()
-        self?.tableView.reloadData()
-      },
-      onError: {[weak self] error in
-        self?.refreshControl.endRefreshing()
-        print(error.localizedDescription)
-      }
-    )
+    refreshControl.rx.controlEvent(.valueChanged)
+      .subscribe(onNext: { [weak self] in
+        self?.refreshData()
+      })
+      .disposed(by: disposeBag)
+
+    self.viewModel.onChangeMovies
+      .subscribe(
+        onNext: {[weak self] response in
+          if case .error(_) = response {
+            print("Erro ao consultar os filmes, verifique sua conexção")
+            self?.showToast(message: "Erro ao consultar os filmes, verifique sua conexção")
+          }
+          self?.refreshControl.endRefreshing()
+          self?.tableView.reloadData()
+        }
+      )
+      .disposed(by: disposeBag)
 
     self.refreshData()
 
     addMovieButton.layer.cornerRadius = 28
     addMovieButton.layer.masksToBounds = true
-
-    addMovieButton.addTarget(self, action: #selector(navigateToAddMovie), for: .touchDown)
+    addMovieButton.rx.tap.subscribe({[weak self] _ in self?.navigateToAddMovie()}).disposed(by: disposeBag)
   }
 
   @objc func refreshData() {
