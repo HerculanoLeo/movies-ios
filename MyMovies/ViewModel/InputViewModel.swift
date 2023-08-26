@@ -9,9 +9,12 @@ import Foundation
 import UIKit
 
 struct InputViewModel {
+  var name: String
   var label: String
   var requiered: Bool?
   var inputAttributes: InputAttributes = .init()
+  var errors: [ErrorSchema] = []
+  var activeErrors: [FormFieldError] = []
 }
 
 struct InputAttributes {

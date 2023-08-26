@@ -39,6 +39,14 @@
 		854389E92A7F378D009AB0EA /* MoviesTitleHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 854389E82A7F378D009AB0EA /* MoviesTitleHeaderView.xib */; };
 		855BCFAB2A86DED1008F34D9 /* fake_api.json in Resources */ = {isa = PBXBuildFile; fileRef = 855BCFAA2A86DED1008F34D9 /* fake_api.json */; };
 		85794D4C2A96BB24006BAD31 /* NetworkIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85794D4B2A96BB24006BAD31 /* NetworkIntegration.swift */; };
+		85794D502A981E9D006BAD31 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85794D4F2A981E9D006BAD31 /* NetworkingManager.swift */; };
+		85794D532A99565A006BAD31 /* NetworkingManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85794D522A99565A006BAD31 /* NetworkingManager+Extensions.swift */; };
+		85794D552A9958F4006BAD31 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85794D542A9958F4006BAD31 /* API.swift */; };
+		85794D572A99596D006BAD31 /* MovieApiResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85794D562A99596D006BAD31 /* MovieApiResource.swift */; };
+		85794D5A2A996FC5006BAD31 /* Peppermint in Frameworks */ = {isa = PBXBuildFile; productRef = 85794D592A996FC5006BAD31 /* Peppermint */; };
+		85794D5D2A997039006BAD31 /* AddMovieValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85794D5C2A997039006BAD31 /* AddMovieValidation.swift */; };
+		85794D602A998DBE006BAD31 /* FormControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85794D5F2A998DBE006BAD31 /* FormControl.swift */; };
+		85794D622A998E92006BAD31 /* FormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85794D612A998E92006BAD31 /* FormField.swift */; };
 		85A879D72A86E7F900280751 /* Environments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A879D62A86E7F900280751 /* Environments.swift */; };
 		85A879D92A86ECAE00280751 /* Config-Dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85A879D82A86ECAE00280751 /* Config-Dev.plist */; };
 		85A879DB2A86ED4A00280751 /* Config-Local.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85A879DA2A86ED4A00280751 /* Config-Local.plist */; };
@@ -95,6 +103,13 @@
 		854389E82A7F378D009AB0EA /* MoviesTitleHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoviesTitleHeaderView.xib; sourceTree = "<group>"; };
 		855BCFAA2A86DED1008F34D9 /* fake_api.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fake_api.json; sourceTree = "<group>"; };
 		85794D4B2A96BB24006BAD31 /* NetworkIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkIntegration.swift; sourceTree = "<group>"; };
+		85794D4F2A981E9D006BAD31 /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
+		85794D522A99565A006BAD31 /* NetworkingManager+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkingManager+Extensions.swift"; sourceTree = "<group>"; };
+		85794D542A9958F4006BAD31 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		85794D562A99596D006BAD31 /* MovieApiResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieApiResource.swift; sourceTree = "<group>"; };
+		85794D5C2A997039006BAD31 /* AddMovieValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMovieValidation.swift; sourceTree = "<group>"; };
+		85794D5F2A998DBE006BAD31 /* FormControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormControl.swift; sourceTree = "<group>"; };
+		85794D612A998E92006BAD31 /* FormField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormField.swift; sourceTree = "<group>"; };
 		85A879D62A86E7F900280751 /* Environments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environments.swift; sourceTree = "<group>"; };
 		85A879D82A86ECAE00280751 /* Config-Dev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Config-Dev.plist"; sourceTree = "<group>"; };
 		85A879DA2A86ED4A00280751 /* Config-Local.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Config-Local.plist"; sourceTree = "<group>"; };
@@ -121,6 +136,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85794D5A2A996FC5006BAD31 /* Peppermint in Frameworks */,
 				7835F782FF787149E2FB6310 /* Pods_MyMovies.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -244,6 +260,7 @@
 			children = (
 				850ACA072A94319800E9A8EF /* UIViewController+Extensions.swift */,
 				854389D22A7EDE6E009AB0EA /* UIImage+Extensions.swift */,
+				85794D522A99565A006BAD31 /* NetworkingManager+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -315,6 +332,8 @@
 		8545D8062A7B38DC00463757 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				85794D5E2A998DAF006BAD31 /* Form */,
+				85794D5B2A997011006BAD31 /* FormValidation */,
 				850AC9FF2A9420DD00E9A8EF /* Reactive */,
 				85D4EE1F2A87F78200E42E17 /* Movie */,
 				852118482A80212C0073BBE9 /* User.swift */,
@@ -325,9 +344,8 @@
 		8545D8072A7B38E800463757 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				8518D9592A86FA410006397C /* UsersAPI.swift */,
-				8518D95D2A87297C0006397C /* MovieAPI.swift */,
-				85794D4B2A96BB24006BAD31 /* NetworkIntegration.swift */,
+				85794D4E2A981DF5006BAD31 /* ApiResource */,
+				85794D4D2A981DE0006BAD31 /* API */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -339,6 +357,43 @@
 				85BCC6582A86F14F0084A5EA /* EnvironmentsVariables.swift */,
 			);
 			path = Configurations;
+			sourceTree = "<group>";
+		};
+		85794D4D2A981DE0006BAD31 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				8518D9592A86FA410006397C /* UsersAPI.swift */,
+				8518D95D2A87297C0006397C /* MovieAPI.swift */,
+				85794D4B2A96BB24006BAD31 /* NetworkIntegration.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		85794D4E2A981DF5006BAD31 /* ApiResource */ = {
+			isa = PBXGroup;
+			children = (
+				85794D4F2A981E9D006BAD31 /* NetworkingManager.swift */,
+				85794D542A9958F4006BAD31 /* API.swift */,
+				85794D562A99596D006BAD31 /* MovieApiResource.swift */,
+			);
+			path = ApiResource;
+			sourceTree = "<group>";
+		};
+		85794D5B2A997011006BAD31 /* FormValidation */ = {
+			isa = PBXGroup;
+			children = (
+				85794D5C2A997039006BAD31 /* AddMovieValidation.swift */,
+			);
+			path = FormValidation;
+			sourceTree = "<group>";
+		};
+		85794D5E2A998DAF006BAD31 /* Form */ = {
+			isa = PBXGroup;
+			children = (
+				85794D5F2A998DBE006BAD31 /* FormControl.swift */,
+				85794D612A998E92006BAD31 /* FormField.swift */,
+			);
+			path = Form;
 			sourceTree = "<group>";
 		};
 		85D4EE1F2A87F78200E42E17 /* Movie */ = {
@@ -416,6 +471,9 @@
 			dependencies = (
 			);
 			name = MyMovies;
+			packageProductDependencies = (
+				85794D592A996FC5006BAD31 /* Peppermint */,
+			);
 			productName = iMovie;
 			productReference = 851AC6CF2A7B382D0028D9AF /* MyMovies.app */;
 			productType = "com.apple.product-type.application";
@@ -444,6 +502,9 @@
 				Base,
 			);
 			mainGroup = 851AC6C62A7B382D0028D9AF;
+			packageReferences = (
+				85794D582A996FC5006BAD31 /* XCRemoteSwiftPackageReference "peppermint" */,
+			);
 			productRefGroup = 851AC6D02A7B382D0028D9AF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -526,6 +587,7 @@
 			files = (
 				85DA7A3F2A8A96D300FAEB45 /* ViewController.swift in Sources */,
 				85DA7A412A8AA12300FAEB45 /* InputViewModel.swift in Sources */,
+				85794D532A99565A006BAD31 /* NetworkingManager+Extensions.swift in Sources */,
 				852118492A80212C0073BBE9 /* User.swift in Sources */,
 				85DA7A482A8AFCD900FAEB45 /* MovieRegisterRequest.swift in Sources */,
 				850ACA082A94319800E9A8EF /* UIViewController+Extensions.swift in Sources */,
@@ -533,6 +595,7 @@
 				854389CD2A7ED3C0009AB0EA /* HomeHeaderView.swift in Sources */,
 				8518D95C2A8729170006397C /* HomeViewModel.swift in Sources */,
 				8521184C2A802D690073BBE9 /* MovieDetailsViewController.swift in Sources */,
+				85794D622A998E92006BAD31 /* FormField.swift in Sources */,
 				85422A8E2A7FE0AD009297D7 /* RatingStarsView.swift in Sources */,
 				85FC68A02A803F0D009FED3A /* MovieDetailsViewModel.swift in Sources */,
 				85FC68A22A804F44009FED3A /* MovieDetailsDelegate.swift in Sources */,
@@ -541,9 +604,12 @@
 				852118592A80393B0073BBE9 /* HomeViewController.swift in Sources */,
 				8518D95E2A87297C0006397C /* MovieAPI.swift in Sources */,
 				850ACA0B2A9431AA00E9A8EF /* UIToastView.swift in Sources */,
+				85794D502A981E9D006BAD31 /* NetworkingManager.swift in Sources */,
 				850ACA012A94210900E9A8EF /* ObservableErrorWrapper.swift in Sources */,
 				851AC6D32A7B382D0028D9AF /* AppDelegate.swift in Sources */,
 				854389D32A7EDE6E009AB0EA /* UIImage+Extensions.swift in Sources */,
+				85794D572A99596D006BAD31 /* MovieApiResource.swift in Sources */,
+				85794D5D2A997039006BAD31 /* AddMovieValidation.swift in Sources */,
 				8518D95A2A86FA410006397C /* UsersAPI.swift in Sources */,
 				85D4EE1E2A87CB4000E42E17 /* RatingStarsDelegate.swift in Sources */,
 				85794D4C2A96BB24006BAD31 /* NetworkIntegration.swift in Sources */,
@@ -555,7 +621,9 @@
 				85422A922A7FE629009297D7 /* RatingStartsViewModel.swift in Sources */,
 				854389E12A7F2294009AB0EA /* MovieTableViewCell.swift in Sources */,
 				851AC6D52A7B382D0028D9AF /* SceneDelegate.swift in Sources */,
+				85794D602A998DBE006BAD31 /* FormControl.swift in Sources */,
 				854389E42A7F26C5009AB0EA /* MovieTableViewModel.swift in Sources */,
+				85794D552A9958F4006BAD31 /* API.swift in Sources */,
 				85D4EE252A88337A00E42E17 /* AddMovieViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1138,6 +1206,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		85794D582A996FC5006BAD31 /* XCRemoteSwiftPackageReference "peppermint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nsagora/peppermint";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		85794D592A996FC5006BAD31 /* Peppermint */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 85794D582A996FC5006BAD31 /* XCRemoteSwiftPackageReference "peppermint" */;
+			productName = Peppermint;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 851AC6C72A7B382D0028D9AF /* Project object */;
 }

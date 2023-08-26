@@ -19,14 +19,12 @@ class AddMovieViewController: UIViewController {
   
   private var activeTextField: UIView?
 
-  private var movieRequest = MovieRegisterRequest()
+  private var movieRequest = MovieRegisterRequest(name: "", ageGroup: "")
 
-  private var subs: [Disposable] = []
+  private let disposeBag = DisposeBag()
 
-  deinit {
-    subs.forEach({ sub in sub.dispose() })
-  }
-  
+  private let formControl = FormControl()
+
   override func viewDidLoad() {
     super.viewDidLoad()
     configureView()
@@ -48,19 +46,41 @@ class AddMovieViewController: UIViewController {
     NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
     NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     
-    let titleInput = UIInputTextView(.init(label: "Titulo", requiered: true))
+    let titleInput = UIInputTextView(.init(
+      name: "title",
+      label: "Titulo",
+      requiered: true,
+      errors: [.init(error: MovieRegisterRequest.Error.name, message: "Título é obrigatório")]
+    ))
     titleInput.setTextFieldDelegate(self)
     
-    let synopsysInput = UIInputTextAreaView(.init(label: "Sinopse", requiered: true))
+    let synopsysInput = UIInputTextAreaView(.init(
+      name: "synopsys",
+      label: "Sinopse",
+      errors: [.init(error: MovieRegisterRequest.Error.synopsys, message: "Sinopse deve ter ao menos 5 letras")]
+    ))
     synopsysInput.setTextViewDelegate(self)
     
-    let ageGroupInput = UIInputTextView(.init(label: "Classificação Etaria", requiered: true))
+    let ageGroupInput = UIInputTextView(.init(
+      name: "ageGroup",
+      label: "Classificação Etaria",
+      requiered: true,
+      errors: [.init(error: MovieRegisterRequest.Error.ageGroup, message: "Classificação Etaria é obrigatório")]
+    ))
     ageGroupInput.setTextFieldDelegate(self)
     
-    let coverInput = UIInputTextView(.init(label: "Miniatura", requiered: true))
+    let coverInput = UIInputTextView(.init(
+      name: "movieCoverUrl",
+      label: "Miniatura",
+      errors: [.init(error: MovieRegisterRequest.Error.movieCoverUrl, message: "Url inválida")]
+    ))
     coverInput.setTextFieldDelegate(self)
     
-    let wallpaperInput = UIInputTextView(.init(label: "Wallpaper", requiered: true))
+    let wallpaperInput = UIInputTextView(.init(
+      name: "movieWallpaperUrl",
+      label: "Wallpaper",
+      errors: [.init(error: MovieRegisterRequest.Error.movieWallpaperUrl, message: "Url inválida")]
+    ))
     wallpaperInput.setTextFieldDelegate(self)
     
     guard let ratingStarsView = Bundle.main.loadNibNamed("RatingStarsView", owner: nil)?.first as? RatingStarsView else {
@@ -84,17 +104,54 @@ class AddMovieViewController: UIViewController {
     mainStackView.addArrangedSubview(ratingStarsView)
     mainStackView.addArrangedSubview(saveButton)
 
-    subs.append(titleInput.textField.rx.text.orEmpty.subscribe(onNext: { [weak self] text in self?.movieRequest.name = text }))
-    subs.append(synopsysInput.textField.rx.text.orEmpty.subscribe(onNext: { [weak self] text in self?.movieRequest.synopsys = text }))
-    subs.append(ageGroupInput.textField.rx.text.orEmpty.subscribe(onNext: { [weak self] text in self?.movieRequest.ageGroup = text }))
-    subs.append(coverInput.textField.rx.text.orEmpty.subscribe(onNext: { [weak self] text in self?.movieRequest.movieCoverUrl = text }))
-    subs.append(wallpaperInput.textField.rx.text.orEmpty.subscribe(onNext: { [weak self] text in self?.movieRequest.movieWallpaperUrl = text }))
-    subs.append(titleInput.textField.rx.text.orEmpty.subscribe(onNext: { [weak self] text in self?.movieRequest.name = text }))
-    subs.append(saveButton.rx.tap.subscribe(onNext: { [weak self] _ in self?.save() }))
+    formControl.addAll([
+      titleInput,
+      synopsysInput,
+      ageGroupInput,
+      coverInput,
+      wallpaperInput
+    ])
+
+    titleInput.textField.rx.text.orEmpty.subscribe(onNext: { [weak self] text in
+      self?.movieRequest.name = text
+    }).disposed(by: disposeBag)
+
+    synopsysInput.textField.rx.text.orEmpty
+      .map { text -> String? in text.isEmpty ? nil : text }
+      .subscribe(onNext: { [weak self] text in
+      self?.movieRequest.synopsys = text
+    }).disposed(by: disposeBag)
+
+    ageGroupInput.textField.rx.text.orEmpty.subscribe(onNext: { [weak self] text in
+      self?.movieRequest.ageGroup = text
+    }).disposed(by: disposeBag)
+
+    coverInput.textField.rx.text.orEmpty
+      .map { text -> String? in text.isEmpty ? nil : text }
+      .subscribe(onNext: { [weak self] text in
+      self?.movieRequest.movieCoverUrl = text
+    }).disposed(by: disposeBag)
+
+    wallpaperInput.textField.rx.text.orEmpty
+      .map { text -> String? in text.isEmpty ? nil : text }
+      .subscribe(onNext: { [weak self] text in
+      self?.movieRequest.movieWallpaperUrl = text
+    }).disposed(by: disposeBag)
+
+    saveButton.rx.tap.subscribe(onNext: { [weak self] _ in
+      self?.save()
+    }).disposed(by: disposeBag)
   }
 
   func save() {
-    MovieAPI.register(requestEntity: movieRequest) {[weak self] result in
+    formControl.cleanErrors()
+    let result = addMovieConstraints.evaluate(with: movieRequest)
+    if case .failure(let summary) = result {
+      print(summary.errors)
+      formControl.setErrors(summary.errors)
+      return
+    }
+    MovieApiResource.register(requestEntity: movieRequest) {[weak self] result in
       switch result {
       case .success(let movie):
         print(movie.id)

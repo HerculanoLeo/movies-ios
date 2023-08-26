@@ -10,11 +10,11 @@ import Foundation
 struct Movie: Decodable {
   var id: String
   var name: String
-  var synopsys: String
+  var synopsys: String?
   var ageGroup: String
   var stars: Int
-  var movieCoverUrl: String;
-  var movieWallpaperUrl: String;
+  var movieCoverUrl: String?;
+  var movieWallpaperUrl: String?;
 
   mutating func changeStars(_ stars: Int) {
     self.stars = stars

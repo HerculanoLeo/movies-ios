@@ -9,6 +9,6 @@ import Foundation
 
 struct MovieTableViewModel {
   var name: String
-  var imageUrl: String
+  var imageUrl: String?
   var stars: Int = 0
 }

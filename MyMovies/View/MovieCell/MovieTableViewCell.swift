@@ -42,11 +42,13 @@ class MovieTableViewCell: UITableViewCell {
 
     self.movieImageView.image = UIImage(named: "Logo")
 
-    UIImage.fromURLString(urlStr: model.imageUrl) { image in
-      if image != nil {
-        DispatchQueue.main.async {
-          self.movieImageView.image = image
-          self.movieImageView.contentMode = .scaleAspectFill
+    if let imageUrl = model.imageUrl {
+      UIImage.fromURLString(urlStr: imageUrl) { image in
+        if image != nil {
+          DispatchQueue.main.async {
+            self.movieImageView.image = image
+            self.movieImageView.contentMode = .scaleAspectFill
+          }
         }
       }
     }

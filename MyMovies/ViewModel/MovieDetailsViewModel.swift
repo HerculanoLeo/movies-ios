@@ -20,7 +20,7 @@ class MovieDetailsViewModel {
   }
 
   func fetchMovie(movieId: String) {
-    MovieAPI.findById(id: movieId) {[weak self] result in
+    MovieApiResource.findById(id: movieId) {[weak self] result in
       switch result {
       case .success(let movie):
         self?.movie = movie

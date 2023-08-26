@@ -10,9 +10,9 @@ import Foundation
 struct MovieUpdateRequest: Encodable {
   var id: String
   var name: String
-  var synopsys: String
+  var synopsys: String?
   var ageGroup: String
   var stars: Int
-  var movieCoverUrl: String;
-  var movieWallpaperUrl: String;
+  var movieCoverUrl: String?
+  var movieWallpaperUrl: String?
 }

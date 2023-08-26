@@ -25,7 +25,7 @@ class HomeViewModel: MovieDetailsDelegate {
         let wrapper = try moviesPublish.value()
         switch wrapper {
         case .success(let values):
-          return values ?? []
+          return values
         case .error(_):
           return []
         }
@@ -37,11 +37,12 @@ class HomeViewModel: MovieDetailsDelegate {
   }
 
   func fetchMovies() {
-    MovieAPI.findAll() {[weak self] result in
+    MovieApiResource.findAll {[weak self] result in
       switch result {
       case .success(let movies):
         self?.moviesPublish.onNext(.success(movies))
       case .failure(let error):
+        print(error)
         self?.moviesPublish.onNext(.error(error))
       }
     }

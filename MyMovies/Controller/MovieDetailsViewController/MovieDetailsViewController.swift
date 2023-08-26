@@ -59,11 +59,12 @@ class MovieDetailsViewController: UIViewController {
         self?.ageGroupLabel.text = movie.ageGroup
 
         self?.ratingStarsView?.updateStarsView()
-
-        UIImage.fromURLString(urlStr: movie.movieWallpaperUrl) { image in
-          DispatchQueue.main.async {
-            self?.wallpaperImageView.image = image
-            self?.wallpaperImageView.contentMode = .scaleAspectFill
+        if let imageUrl = movie.movieWallpaperUrl {
+          UIImage.fromURLString(urlStr: imageUrl) { image in
+            DispatchQueue.main.async {
+              self?.wallpaperImageView.image = image
+              self?.wallpaperImageView.contentMode = .scaleAspectFill
+            }
           }
         }
       },
