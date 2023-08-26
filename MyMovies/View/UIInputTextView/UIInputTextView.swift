@@ -114,6 +114,10 @@ extension UIInputTextView: FormField {
     self.viewMode.activeErrors
   }
 
+  func focus() {
+    self.textField.becomeFirstResponder()
+  }
+
   func setActiveErrors(_ errors: [FormFieldError]) {
     self.viewMode.activeErrors = errors.filter {[weak self] error in
       self?.viewMode.errors.contains(where: { errorSchema in

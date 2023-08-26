@@ -147,7 +147,6 @@ class AddMovieViewController: UIViewController {
     formControl.cleanErrors()
     let result = addMovieConstraints.evaluate(with: movieRequest)
     if case .failure(let summary) = result {
-      print(summary.errors)
       formControl.setErrors(summary.errors)
       return
     }

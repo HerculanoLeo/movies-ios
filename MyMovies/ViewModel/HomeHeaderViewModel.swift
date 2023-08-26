@@ -38,7 +38,7 @@ class HomeHeaderViewModel {
 
 
   func fetchUser(_ userId: String) {
-    UsersAPI.findByid(id: userId) {[weak self] result in
+    UserApiResoruce.findById(userId) {[weak self] result in
       switch result {
       case .success(let user):
         self?.userPublish.onNext(.success(user))

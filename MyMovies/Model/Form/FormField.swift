@@ -12,6 +12,7 @@ protocol FormField {
   var errors: [ErrorSchema] { get }
   var activeErrors: [FormFieldError] { get }
 
+  func focus()
   func setActiveErrors(_ errors: [FormFieldError])
   func cleanErrors()
 }

@@ -24,6 +24,10 @@ class FormControl {
     for field in fields {
       field.setActiveErrors(errors)
     }
+    if let index = fields.firstIndex(where: { field in !field.activeErrors.isEmpty }) {
+      print(index)
+      fields[index].focus()
+    }
   }
 
   func cleanErrors() {
