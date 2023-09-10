@@ -9,6 +9,7 @@ import Foundation
 
 protocol FormField {
   var name: String { get }
+  var value: Any? { get }
   var errors: [ErrorSchema] { get }
   var activeErrors: [FormFieldError] { get }
 
@@ -22,7 +23,7 @@ struct ErrorSchema {
   var message: String
 }
 
-protocol FormFieldError: Swift.Error {
+protocol FormFieldError: Error {
   var fieldName: String { get }
 }
 

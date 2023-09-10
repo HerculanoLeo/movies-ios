@@ -75,7 +75,7 @@ class HomeViewController: UIViewController {
   }
 
   @objc func navigateToAddMovie() {
-    let addMovieViewController = AddMovieViewController(nibName: "AddMovieViewController", bundle: nil)
+    let addMovieViewController = AddMovieFormViewController()
     addMovieViewController.delegate = self
     self.navigationController?.pushViewController(addMovieViewController, animated: true)
   }

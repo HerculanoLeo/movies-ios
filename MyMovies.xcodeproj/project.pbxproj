@@ -37,6 +37,12 @@
 		854389E22A7F2294009AB0EA /* MovieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 854389E02A7F2294009AB0EA /* MovieTableViewCell.xib */; };
 		854389E42A7F26C5009AB0EA /* MovieTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854389E32A7F26C5009AB0EA /* MovieTableViewModel.swift */; };
 		854389E92A7F378D009AB0EA /* MoviesTitleHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 854389E82A7F378D009AB0EA /* MoviesTitleHeaderView.xib */; };
+		8548F7732AADFDD8009EF82C /* UIFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8548F7722AADFDD8009EF82C /* UIFormViewController.swift */; };
+		8548F7752AAE1641009EF82C /* FormError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8548F7742AAE1641009EF82C /* FormError.swift */; };
+		8548F7782AAE2165009EF82C /* AddMovieFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8548F7772AAE2165009EF82C /* AddMovieFormViewController.swift */; };
+		8548F77A2AAE27DC009EF82C /* FormFieldBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8548F7792AAE27DC009EF82C /* FormFieldBuilder.swift */; };
+		8548F77D2AAE63B4009EF82C /* UIInputRatingStarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8548F77C2AAE63B4009EF82C /* UIInputRatingStarsView.swift */; };
+		8548F7802AAE64A5009EF82C /* InputRatingStarsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8548F77F2AAE64A5009EF82C /* InputRatingStarsViewModel.swift */; };
 		855BCFAB2A86DED1008F34D9 /* fake_api.json in Resources */ = {isa = PBXBuildFile; fileRef = 855BCFAA2A86DED1008F34D9 /* fake_api.json */; };
 		85768FB82A9A60310080A0C5 /* UserApiResoruce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85768FB72A9A60310080A0C5 /* UserApiResoruce.swift */; };
 		85794D4C2A96BB24006BAD31 /* NetworkIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85794D4B2A96BB24006BAD31 /* NetworkIntegration.swift */; };
@@ -107,6 +113,12 @@
 		854389E02A7F2294009AB0EA /* MovieTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieTableViewCell.xib; sourceTree = "<group>"; };
 		854389E32A7F26C5009AB0EA /* MovieTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewModel.swift; sourceTree = "<group>"; };
 		854389E82A7F378D009AB0EA /* MoviesTitleHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoviesTitleHeaderView.xib; sourceTree = "<group>"; };
+		8548F7722AADFDD8009EF82C /* UIFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFormViewController.swift; sourceTree = "<group>"; };
+		8548F7742AAE1641009EF82C /* FormError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormError.swift; sourceTree = "<group>"; };
+		8548F7772AAE2165009EF82C /* AddMovieFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMovieFormViewController.swift; sourceTree = "<group>"; };
+		8548F7792AAE27DC009EF82C /* FormFieldBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormFieldBuilder.swift; sourceTree = "<group>"; };
+		8548F77C2AAE63B4009EF82C /* UIInputRatingStarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIInputRatingStarsView.swift; sourceTree = "<group>"; };
+		8548F77F2AAE64A5009EF82C /* InputRatingStarsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputRatingStarsViewModel.swift; sourceTree = "<group>"; };
 		855BCFAA2A86DED1008F34D9 /* fake_api.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fake_api.json; sourceTree = "<group>"; };
 		85768FB72A9A60310080A0C5 /* UserApiResoruce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserApiResoruce.swift; sourceTree = "<group>"; };
 		85794D4B2A96BB24006BAD31 /* NetworkIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkIntegration.swift; sourceTree = "<group>"; };
@@ -306,6 +318,7 @@
 		8545D8032A7B38A900463757 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				8548F7762AAE2143009EF82C /* AddMovieFormViewController */,
 				85D4EE222A88336000E42E17 /* AddMovieViewController */,
 				85FC68942A803C43009FED3A /* ViewController */,
 				852118562A8039230073BBE9 /* HomeViewController */,
@@ -317,11 +330,9 @@
 		8545D8042A7B38C300463757 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8548F77B2AAE5A6C009EF82C /* UIForm */,
 				85DE3DAA2AAD24780091E1BE /* UISheetView */,
-				85DE3DA22AACF7CD0091E1BE /* UIInputDropdownView */,
 				850ACA092A9431A400E9A8EF /* UIToastView */,
-				85DA7A422A8AACB500FAEB45 /* UIInputTextAreaView */,
-				850FDD0F2A8870D400A39B87 /* UIInputTextView */,
 				85422A8C2A7FE076009297D7 /* RatingStars */,
 				854389DE2A7F2223009AB0EA /* MovieCell */,
 				854389D42A7EF884009AB0EA /* Divider */,
@@ -340,6 +351,7 @@
 				85FC689F2A803F0D009FED3A /* MovieDetailsViewModel.swift */,
 				8518D95B2A8729170006397C /* HomeViewModel.swift */,
 				85DA7A402A8AA12200FAEB45 /* InputViewModel.swift */,
+				8548F77F2AAE64A5009EF82C /* InputRatingStarsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -362,6 +374,42 @@
 				85768FB62A9A5F9C0080A0C5 /* Alamofire */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		8548F7702AADFDAA009EF82C /* UIFormViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8548F7722AADFDD8009EF82C /* UIFormViewController.swift */,
+			);
+			path = UIFormViewController;
+			sourceTree = "<group>";
+		};
+		8548F7762AAE2143009EF82C /* AddMovieFormViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8548F7772AAE2165009EF82C /* AddMovieFormViewController.swift */,
+			);
+			path = AddMovieFormViewController;
+			sourceTree = "<group>";
+		};
+		8548F77B2AAE5A6C009EF82C /* UIForm */ = {
+			isa = PBXGroup;
+			children = (
+				8548F7702AADFDAA009EF82C /* UIFormViewController */,
+				85DE3DA22AACF7CD0091E1BE /* UIInputDropdownView */,
+				850FDD0F2A8870D400A39B87 /* UIInputTextView */,
+				85DA7A422A8AACB500FAEB45 /* UIInputTextAreaView */,
+				8548F77E2AAE63C3009EF82C /* UIInputRatingStarsView */,
+			);
+			path = UIForm;
+			sourceTree = "<group>";
+		};
+		8548F77E2AAE63C3009EF82C /* UIInputRatingStarsView */ = {
+			isa = PBXGroup;
+			children = (
+				8548F77C2AAE63B4009EF82C /* UIInputRatingStarsView.swift */,
+			);
+			path = UIInputRatingStarsView;
 			sourceTree = "<group>";
 		};
 		855BCFAC2A86E5FF008F34D9 /* Configurations */ = {
@@ -417,6 +465,8 @@
 				85DE3DAF2AAD37F30091E1BE /* Inputs */,
 				85794D5F2A998DBE006BAD31 /* FormControl.swift */,
 				85794D612A998E92006BAD31 /* FormField.swift */,
+				8548F7792AAE27DC009EF82C /* FormFieldBuilder.swift */,
+				8548F7742AAE1641009EF82C /* FormError.swift */,
 			);
 			path = Form;
 			sourceTree = "<group>";
@@ -647,12 +697,16 @@
 				8521184C2A802D690073BBE9 /* MovieDetailsViewController.swift in Sources */,
 				85794D622A998E92006BAD31 /* FormField.swift in Sources */,
 				85DE3DA42AACF8020091E1BE /* UIInputDropdownView.swift in Sources */,
+				8548F7802AAE64A5009EF82C /* InputRatingStarsViewModel.swift in Sources */,
 				85422A8E2A7FE0AD009297D7 /* RatingStarsView.swift in Sources */,
 				85FC68A02A803F0D009FED3A /* MovieDetailsViewModel.swift in Sources */,
+				8548F7782AAE2165009EF82C /* AddMovieFormViewController.swift in Sources */,
 				85FC68A22A804F44009FED3A /* MovieDetailsDelegate.swift in Sources */,
 				852118472A8014890073BBE9 /* Movie.swift in Sources */,
 				85D4EE212A87F79E00E42E17 /* MovieUpdateRequest.swift in Sources */,
+				8548F7732AADFDD8009EF82C /* UIFormViewController.swift in Sources */,
 				852118592A80393B0073BBE9 /* HomeViewController.swift in Sources */,
+				8548F77D2AAE63B4009EF82C /* UIInputRatingStarsView.swift in Sources */,
 				8518D95E2A87297C0006397C /* MovieAPI.swift in Sources */,
 				85DE3DAC2AAD24950091E1BE /* UISheetView.swift in Sources */,
 				85DE3DB12AAD38000091E1BE /* Option.swift in Sources */,
@@ -663,6 +717,7 @@
 				851AC6D32A7B382D0028D9AF /* AppDelegate.swift in Sources */,
 				854389D32A7EDE6E009AB0EA /* UIImage+Extensions.swift in Sources */,
 				85794D572A99596D006BAD31 /* MovieApiResource.swift in Sources */,
+				8548F77A2AAE27DC009EF82C /* FormFieldBuilder.swift in Sources */,
 				85794D5D2A997039006BAD31 /* AddMovieValidation.swift in Sources */,
 				8518D95A2A86FA410006397C /* UsersAPI.swift in Sources */,
 				85D4EE1E2A87CB4000E42E17 /* RatingStarsDelegate.swift in Sources */,
@@ -674,6 +729,7 @@
 				85A879D72A86E7F900280751 /* Environments.swift in Sources */,
 				85DA7A4A2A8B077700FAEB45 /* AddMovieDelegate.swift in Sources */,
 				85DE3DAE2AAD34980091E1BE /* InputDropdownDelegate.swift in Sources */,
+				8548F7752AAE1641009EF82C /* FormError.swift in Sources */,
 				85422A922A7FE629009297D7 /* RatingStartsViewModel.swift in Sources */,
 				854389E12A7F2294009AB0EA /* MovieTableViewCell.swift in Sources */,
 				851AC6D52A7B382D0028D9AF /* SceneDelegate.swift in Sources */,

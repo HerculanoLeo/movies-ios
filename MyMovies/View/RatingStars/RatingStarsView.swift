@@ -13,9 +13,9 @@ class RatingStarsView: UIView {
 
   private var viewMode = RatingStarsViewModel()
 
-  var delegate: RatingStarsDelegate?
+  private let disposeBag = DisposeBag()
 
-  private var starsSubscription: Disposable?
+  var delegate: RatingStarsDelegate?
 
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -27,13 +27,13 @@ class RatingStarsView: UIView {
       starImageView.isUserInteractionEnabled = true
     }
 
-    self.starsSubscription = self.viewMode.onChangeValue.subscribe(
+    viewMode.onChangeValue.subscribe(
       onNext: {[weak self] stars in
         if let delegate = self?.delegate {
           delegate.onChangeValue?(stars)
         }
       }
-    )
+    ).disposed(by: disposeBag)
   }
 
   func updateStarsView() {

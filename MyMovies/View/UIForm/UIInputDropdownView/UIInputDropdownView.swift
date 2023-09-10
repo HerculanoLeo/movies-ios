@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 class UIInputDropdownView<T>: UIStackView {
-  private var viewMode: InputDropdownViewModel<T>
+  private var viewModel: InputDropdownViewModel<T>
   private(set) var label = UILabel()
   private(set) var selectValueButton = UIButton()
   private var errorMessages: [UILabel] = []
@@ -26,30 +26,30 @@ class UIInputDropdownView<T>: UIStackView {
   private let disposeBag = DisposeBag()
   private let optionsView = UIInputDropdownOptionsView<T>()
 
-  var onSelectValue: Observable<T?> {
-    return self.viewMode.onSelectValue
+  var onChangeValue: Observable<T?> {
+    return self.viewModel.onSelectValue
   }
 
   init(_ viewMode: InputDropdownViewModel<T>) {
-    self.viewMode = viewMode
+    self.viewModel = viewMode
     super.init(frame: CGRect())
     commonInit()
   }
 
   override init(frame: CGRect) {
-    self.viewMode = InputDropdownViewModel<T>(name: "", label: "")
+    self.viewModel = InputDropdownViewModel<T>(name: "", label: "")
     super.init(frame: frame)
     commonInit()
   }
 
   required init(coder: NSCoder) {
-    self.viewMode = InputDropdownViewModel<T>(name: "", label: "")
+    self.viewModel = InputDropdownViewModel<T>(name: "", label: "")
     super.init(coder: coder)
     commonInit()
   }
 
   func showOptions() {
-    self.viewMode.delegate?.showOptions(self.optionsView)
+    self.viewModel.delegate?.showOptions(self.optionsView)
   }
 
   private func commonInit() {
@@ -58,10 +58,10 @@ class UIInputDropdownView<T>: UIStackView {
     self.addArrangedSubview(label)
     self.addArrangedSubview(selectValueButton)
 
-    if let required = viewMode.requiered, required == true {
-      label.text = "\(viewMode.label) *"
+    if let required = viewModel.requiered, required == true {
+      label.text = "\(viewModel.label) *"
     } else {
-      label.text = viewMode.label
+      label.text = viewModel.label
     }
 
     self.configureSelectValueButton();
@@ -72,7 +72,7 @@ class UIInputDropdownView<T>: UIStackView {
 
   private func configureSelectValueButton() {
     self.selectValueButton.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-    self.selectValueButton.addConstraint(NSLayoutConstraint(item: selectValueButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: viewMode.inputAttributes.heigth))
+    self.selectValueButton.addConstraint(NSLayoutConstraint(item: selectValueButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: viewModel.inputAttributes.heigth))
     self.selectValueButton.layer.cornerRadius = 24
     self.selectValueButton.layer.masksToBounds = true
     self.selectValueButton.layer.borderWidth = 1
@@ -105,18 +105,18 @@ class UIInputDropdownView<T>: UIStackView {
   }
 
   private func configureOptionsView() {
-    self.optionsView.delegate = self.viewMode.delegate
+    self.optionsView.delegate = self.viewModel.delegate
     self.optionsView.onSelect = {[weak self] option in
-      self?.viewMode.setSelectedOption(option)
+      self?.viewModel.setSelectedOption(option)
       self?.configureSelecedOption()
-      self?.viewMode.delegate?.hideOptions()
+      self?.viewModel.delegate?.hideOptions()
     }
 
-    self.optionsView.setOptions(self.viewMode.options)
+    self.optionsView.setOptions(self.viewModel.options)
   }
 
   private func configureSelecedOption() {
-    if let selectedOption = self.viewMode.selectedOption {
+    if let selectedOption = self.viewModel.selectedOption {
       self.selectedLabel.text = selectedOption.label
     } else {
       self.selectedLabel.text = ""
@@ -124,7 +124,7 @@ class UIInputDropdownView<T>: UIStackView {
   }
 
   func showErrors() {
-    if self.viewMode.activeErrors.count > 0 {
+    if self.viewModel.activeErrors.count > 0 {
       self.selectValueButton.layer.borderColor = UIColor.red.cgColor
 
       let errorSchemas = self.errors.filter {[weak self] schema in
@@ -152,16 +152,20 @@ class UIInputDropdownView<T>: UIStackView {
 }
 
 extension UIInputDropdownView: FormField {
+  var value: Any? {
+    return self.viewModel.selectedOption?.value ?? self.viewModel.defaultOption?.value
+  }
+
   var name: String {
-    self.viewMode.name
+    self.viewModel.name
   }
 
   var errors: [ErrorSchema] {
-    self.viewMode.errors
+    self.viewModel.errors
   }
 
   var activeErrors: [FormFieldError] {
-    self.viewMode.activeErrors
+    self.viewModel.activeErrors
   }
 
   func focus() {
@@ -169,8 +173,8 @@ extension UIInputDropdownView: FormField {
   }
 
   func setActiveErrors(_ errors: [FormFieldError]) {
-    self.viewMode.activeErrors = errors.filter {[weak self] error in
-      self?.viewMode.errors.contains(where: { errorSchema in
+    self.viewModel.activeErrors = errors.filter {[weak self] error in
+      self?.viewModel.errors.contains(where: { errorSchema in
         errorSchema.error.fieldName == error.fieldName
       }) ?? false
     }
@@ -178,7 +182,7 @@ extension UIInputDropdownView: FormField {
   }
 
   func cleanErrors() {
-    self.viewMode.activeErrors = []
+    self.viewModel.activeErrors = []
     self.showErrors()
   }
 

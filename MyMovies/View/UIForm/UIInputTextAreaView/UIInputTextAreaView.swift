@@ -1,16 +1,17 @@
 //
-//  InputView.swift
+//  UIInputTextAreaView.swift
 //  MyMovies
 //
-//  Created by Herculano Leo de Oliveira Dias on 12/08/23.
+//  Created by Herculano Leo de Oliveira Dias on 14/08/23.
 //
 
+import Foundation
 import UIKit
 
-class UIInputTextView: UIStackView {
+class UIInputTextAreaView: UIStackView {
   private var viewMode: InputViewModel
   private(set) var label = UILabel()
-  private(set) var textField = UIInputTextField()
+  private(set) var textField = UITextView()
   private var errorMessages: [UILabel] = []
 
   init(_ viewMode: InputViewModel) {
@@ -31,7 +32,7 @@ class UIInputTextView: UIStackView {
     commonInit()
   }
 
-  func setTextFieldDelegate(_ delegate: UITextFieldDelegate) {
+  func setTextViewDelegate(_ delegate: UITextViewDelegate) {
     self.textField.delegate = delegate
   }
 
@@ -48,11 +49,12 @@ class UIInputTextView: UIStackView {
     }
 
     self.textField.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-    self.textField.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
-    self.textField.addConstraint(NSLayoutConstraint(item: textField, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: viewMode.inputAttributes.heigth))
-    self.textField.contentVerticalAlignment = viewMode.inputAttributes.contentVerticalAlignment
+    self.textField.addConstraint(NSLayoutConstraint(item: textField, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 155))
     self.textField.layer.cornerRadius = 24
     self.textField.layer.masksToBounds = true
+    self.textField.font = UIFont.systemFont(ofSize: 16)
+    self.textField.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+    self.textField.textContainerInset = .init(top: 10, left: 15, bottom: 10, right: 15)
     self.textField.layer.borderWidth = 1
 
     self.label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
@@ -63,11 +65,11 @@ class UIInputTextView: UIStackView {
     if self.viewMode.activeErrors.count > 0 {
       self.textField.layer.borderColor = UIColor.red.cgColor
 
-      let errorSchemas = self.errors.filter {[weak self] schema in
+      let errorSchemas = self.errors.filter({[weak self] schema in
         self?.activeErrors.contains(where: { active in
           active.fieldName == schema.error.fieldName
         }) ?? false
-      }
+      })
 
       for errorSchema in errorSchemas {
         let message = UILabel()
@@ -85,26 +87,21 @@ class UIInputTextView: UIStackView {
       self.errorMessages = []
     }
   }
-
 }
 
-class UIInputTextField: UITextField {
-  let padding = UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15)
-  override open func textRect(forBounds bounds: CGRect) -> CGRect {
-    return bounds.inset(by: padding)
-  }
-  override open func placeholderRect(forBounds bounds: CGRect) -> CGRect {
-    return bounds.inset(by: padding)
-  }
-  override open func editingRect(forBounds bounds: CGRect) -> CGRect {
-    return bounds.inset(by: padding)
-  }
-}
-
-extension UIInputTextView: FormField {
+extension UIInputTextAreaView: FormField {
   var name: String {
     self.viewMode.name
   }
+
+  var value: Any? {
+    if let text = self.textField.text, !text.isEmpty {
+      return text
+    }
+
+    return self.viewMode.defaultValue
+  }
+
 
   var errors: [ErrorSchema] {
     self.viewMode.errors
@@ -132,3 +129,4 @@ extension UIInputTextView: FormField {
     self.showErrors()
   }
 }
+

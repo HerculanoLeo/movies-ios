@@ -14,17 +14,17 @@ class AddMovieViewController: UIViewController {
   @IBOutlet weak var scrollView: UIScrollView!
   
   @IBOutlet weak var mainStackView: UIStackView!
-
+  
   var delegate: AddMovieDelegate?
   
   private var activeTextField: UIView?
-
+  
   private var movieRequest = MovieRegisterRequest(name: "", ageGroup: "")
-
+  
   private let disposeBag = DisposeBag()
-
-  private let formControl = FormControl()
-
+  
+  private let formControl = FormControl<MovieRegisterRequest, MovieRegisterRequest.Error>()
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     configureView()
@@ -42,7 +42,7 @@ class AddMovieViewController: UIViewController {
     
     let endEditingGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
     scrollView.addGestureRecognizer(endEditingGesture)
-
+    
     NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
     NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     
@@ -75,7 +75,7 @@ class AddMovieViewController: UIViewController {
       errors: [.init(error: MovieRegisterRequest.Error.ageGroup, message: "Classificação Etaria é obrigatório")],
       delegate: self
     ))
-
+    
     let coverInput = UIInputTextView(.init(
       name: "movieCoverUrl",
       label: "Miniatura",
@@ -94,7 +94,7 @@ class AddMovieViewController: UIViewController {
       fatalError("Error to create a RatingStarsView")
     }
     ratingStarsView.delegate = self
-
+    
     let saveButton = UIButton()
     saveButton.backgroundColor = UIColor(red: 84/255, green: 101/255, blue: 255/255, alpha: 1)
     saveButton.setTitle("Salvar", for: .normal)
@@ -102,7 +102,7 @@ class AddMovieViewController: UIViewController {
     saveButton.addConstraint(NSLayoutConstraint(item: saveButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 60))
     saveButton.layer.cornerRadius = 24
     saveButton.layer.masksToBounds = true
-
+    
     mainStackView.addArrangedSubview(titleInput)
     mainStackView.addArrangedSubview(synopsysInput)
     mainStackView.addArrangedSubview(ageGroupInput)
@@ -110,7 +110,7 @@ class AddMovieViewController: UIViewController {
     mainStackView.addArrangedSubview(wallpaperInput)
     mainStackView.addArrangedSubview(ratingStarsView)
     mainStackView.addArrangedSubview(saveButton)
-
+    
     formControl.addAll([
       titleInput,
       synopsysInput,
@@ -118,45 +118,40 @@ class AddMovieViewController: UIViewController {
       coverInput,
       wallpaperInput
     ])
-
+    
     titleInput.textField.rx.text.orEmpty.subscribe(onNext: { [weak self] text in
       self?.movieRequest.name = text
     }).disposed(by: disposeBag)
-
+    
     synopsysInput.textField.rx.text.orEmpty
       .map { text -> String? in text.isEmpty ? nil : text }
       .subscribe(onNext: { [weak self] text in
         self?.movieRequest.synopsys = text
       }).disposed(by: disposeBag)
-
-    ageGroupInput.onSelectValue
+    
+    ageGroupInput.onChangeValue
       .map { value in (value != nil) ? value! : "" }
-      .subscribe {[weak self] event in
-        switch event{
-        case .next(let value):
-          self?.movieRequest.ageGroup = value
-        default:
-          break
-        }
-      }.disposed(by: disposeBag)
-
+      .subscribe(onNext: {[weak self] value in
+        self?.movieRequest.ageGroup = value
+      }).disposed(by: disposeBag)
+    
     coverInput.textField.rx.text.orEmpty
       .map { text -> String? in text.isEmpty ? nil : text }
       .subscribe(onNext: { [weak self] text in
         self?.movieRequest.movieCoverUrl = text
       }).disposed(by: disposeBag)
-
+    
     wallpaperInput.textField.rx.text.orEmpty
       .map { text -> String? in text.isEmpty ? nil : text }
       .subscribe(onNext: { [weak self] text in
         self?.movieRequest.movieWallpaperUrl = text
       }).disposed(by: disposeBag)
-
+    
     saveButton.rx.tap.subscribe(onNext: { [weak self] _ in
       self?.save()
     }).disposed(by: disposeBag)
   }
-
+  
   func save() {
     formControl.cleanErrors()
     let result = addMovieConstraints.evaluate(with: movieRequest)
@@ -224,22 +219,22 @@ extension AddMovieViewController: RatingStarsDelegate {
   var markedStars: Int {
     return movieRequest.stars
   }
-
+  
   var readOnly: Bool {
     return false
   }
-
+  
   func onChangeValue(_ stars: Int) {
     movieRequest.stars = stars
   }
-
+  
 }
 
 extension AddMovieViewController: InputDropdownDelegate {
   func showOptions(_ optionsView: some UIView) {
     showSheetModalView(optionsView)
   }
-
+  
   func hideOptions() {
     hideModal()
   }

@@ -12,6 +12,7 @@ import RxSwift
 struct InputViewModel {
   var name: String
   var label: String
+  var defaultValue: String?
   var requiered: Bool?
   var inputAttributes: InputAttributes = .init()
   var errors: [ErrorSchema] = []
@@ -28,6 +29,7 @@ struct InputDropdownViewModel<T> {
   var label: String
   var options: [Option<T>] = []
   var selectedOption: Option<T>?
+  var defaultOption: Option<T>?
   var requiered: Bool?
   var inputAttributes: InputAttributes = .init()
   var errors: [ErrorSchema] = []
