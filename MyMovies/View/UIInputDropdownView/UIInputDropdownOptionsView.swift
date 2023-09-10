@@ -68,6 +68,7 @@ class UIInputDropdownOptionsView<T>: UIView, UITableViewDataSource, UITableViewD
     optionLabel.textAlignment = .center
 
     let cell = UITableViewCell()
+    cell.backgroundColor = .white
 
     cell.addSubview(optionLabel)
 
