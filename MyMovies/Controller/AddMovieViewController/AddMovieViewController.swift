@@ -61,14 +61,21 @@ class AddMovieViewController: UIViewController {
     ))
     synopsysInput.setTextViewDelegate(self)
     
-    let ageGroupInput = UIInputTextView(.init(
+    let ageGroupInput = UIInputDropdownView<String>(.init(
       name: "ageGroup",
       label: "Classificação Etaria",
+      options: [
+        .init(label: "Livre", value: "Livre"),
+        .init(label: "12 anos", value: "12 anos"),
+        .init(label: "14 anos", value: "14 anos"),
+        .init(label: "18 anos", value: "18 anos"),
+      ],
+      selectedOption: .init(label: "Selecione uma opção", value: nil),
       requiered: true,
-      errors: [.init(error: MovieRegisterRequest.Error.ageGroup, message: "Classificação Etaria é obrigatório")]
+      errors: [.init(error: MovieRegisterRequest.Error.ageGroup, message: "Classificação Etaria é obrigatório")],
+      delegate: self
     ))
-    ageGroupInput.setTextFieldDelegate(self)
-    
+
     let coverInput = UIInputTextView(.init(
       name: "movieCoverUrl",
       label: "Miniatura",
@@ -119,24 +126,31 @@ class AddMovieViewController: UIViewController {
     synopsysInput.textField.rx.text.orEmpty
       .map { text -> String? in text.isEmpty ? nil : text }
       .subscribe(onNext: { [weak self] text in
-      self?.movieRequest.synopsys = text
-    }).disposed(by: disposeBag)
+        self?.movieRequest.synopsys = text
+      }).disposed(by: disposeBag)
 
-    ageGroupInput.textField.rx.text.orEmpty.subscribe(onNext: { [weak self] text in
-      self?.movieRequest.ageGroup = text
-    }).disposed(by: disposeBag)
+    ageGroupInput.onSelectValue
+      .map { value in (value != nil) ? value! : "" }
+      .subscribe {[weak self] event in
+        switch event{
+        case .next(let value):
+          self?.movieRequest.ageGroup = value
+        default:
+          break
+        }
+      }.disposed(by: disposeBag)
 
     coverInput.textField.rx.text.orEmpty
       .map { text -> String? in text.isEmpty ? nil : text }
       .subscribe(onNext: { [weak self] text in
-      self?.movieRequest.movieCoverUrl = text
-    }).disposed(by: disposeBag)
+        self?.movieRequest.movieCoverUrl = text
+      }).disposed(by: disposeBag)
 
     wallpaperInput.textField.rx.text.orEmpty
       .map { text -> String? in text.isEmpty ? nil : text }
       .subscribe(onNext: { [weak self] text in
-      self?.movieRequest.movieWallpaperUrl = text
-    }).disposed(by: disposeBag)
+        self?.movieRequest.movieWallpaperUrl = text
+      }).disposed(by: disposeBag)
 
     saveButton.rx.tap.subscribe(onNext: { [weak self] _ in
       self?.save()
@@ -219,4 +233,14 @@ extension AddMovieViewController: RatingStarsDelegate {
     movieRequest.stars = stars
   }
 
+}
+
+extension AddMovieViewController: InputDropdownDelegate {
+  func showOptions(_ optionsView: some UIView) {
+    showSheetModalView(optionsView)
+  }
+
+  func hideOptions() {
+    hideModal()
+  }
 }

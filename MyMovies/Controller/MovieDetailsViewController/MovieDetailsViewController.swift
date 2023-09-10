@@ -60,11 +60,9 @@ class MovieDetailsViewController: UIViewController {
 
         self?.ratingStarsView?.updateStarsView()
         if let imageUrl = movie.movieWallpaperUrl {
-          UIImage.fromURLString(urlStr: imageUrl) { image in
-            DispatchQueue.main.async {
-              self?.wallpaperImageView.image = image
-              self?.wallpaperImageView.contentMode = .scaleAspectFill
-            }
+          Task {
+            self?.wallpaperImageView.image = await UIImage.fromURLString(imageUrl)
+            self?.wallpaperImageView.contentMode = .scaleAspectFill
           }
         }
       },

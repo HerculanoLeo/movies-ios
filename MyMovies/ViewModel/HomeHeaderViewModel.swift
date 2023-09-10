@@ -36,7 +36,6 @@ class HomeHeaderViewModel {
     }
   }
 
-
   func fetchUser(_ userId: String) {
     UserApiResoruce.findById(userId) {[weak self] result in
       switch result {

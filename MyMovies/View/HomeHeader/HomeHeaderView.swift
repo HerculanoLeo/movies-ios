@@ -39,11 +39,9 @@ class HomeHeaderView: UIView {
           if let image = self?.image {
             self?.userImageView.image = image
           } else if let imageLink = user.profileImageUrl {
-            UIImage.fromURLString(urlStr: imageLink) { image in
-              self?.image = image
-              DispatchQueue.main.async {
-                self?.userImageView.image = image
-              }
+            Task {
+              self?.image = await UIImage.fromURLString(imageLink)
+              self?.userImageView.image = self?.image
             }
             self?.userImageView.layer.cornerRadius = 40
           }

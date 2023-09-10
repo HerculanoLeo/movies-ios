@@ -43,12 +43,11 @@ class MovieTableViewCell: UITableViewCell {
     self.movieImageView.image = UIImage(named: "Logo")
 
     if let imageUrl = model.imageUrl {
-      UIImage.fromURLString(urlStr: imageUrl) { image in
+      Task {
+        let image = await UIImage.fromURLString(imageUrl)
         if image != nil {
-          DispatchQueue.main.async {
-            self.movieImageView.image = image
-            self.movieImageView.contentMode = .scaleAspectFill
-          }
+          self.movieImageView.image = image
+          self.movieImageView.contentMode = .scaleAspectFill
         }
       }
     }
@@ -67,6 +66,5 @@ extension MovieTableViewCell: RatingStarsDelegate {
   var readOnly: Bool {
     return true
   }
-
 
 }

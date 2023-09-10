@@ -63,11 +63,11 @@ class UIInputTextView: UIStackView {
     if self.viewMode.activeErrors.count > 0 {
       self.textField.layer.borderColor = UIColor.red.cgColor
 
-      let errorSchemas = self.errors.filter({[weak self] schema in
+      let errorSchemas = self.errors.filter {[weak self] schema in
         self?.activeErrors.contains(where: { active in
           active.fieldName == schema.error.fieldName
         }) ?? false
-      })
+      }
 
       for errorSchema in errorSchemas {
         let message = UILabel()

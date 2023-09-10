@@ -62,6 +62,11 @@
 		85DA7A442A8AACD800FAEB45 /* UIInputTextAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DA7A432A8AACD800FAEB45 /* UIInputTextAreaView.swift */; };
 		85DA7A482A8AFCD900FAEB45 /* MovieRegisterRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DA7A472A8AFCD900FAEB45 /* MovieRegisterRequest.swift */; };
 		85DA7A4A2A8B077700FAEB45 /* AddMovieDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DA7A492A8B077700FAEB45 /* AddMovieDelegate.swift */; };
+		85DE3DA42AACF8020091E1BE /* UIInputDropdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DE3DA32AACF8020091E1BE /* UIInputDropdownView.swift */; };
+		85DE3DA62AAD18E90091E1BE /* UIInputDropdownOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DE3DA52AAD18E90091E1BE /* UIInputDropdownOptionsView.swift */; };
+		85DE3DAC2AAD24950091E1BE /* UISheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DE3DAB2AAD24950091E1BE /* UISheetView.swift */; };
+		85DE3DAE2AAD34980091E1BE /* InputDropdownDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DE3DAD2AAD34980091E1BE /* InputDropdownDelegate.swift */; };
+		85DE3DB12AAD38000091E1BE /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DE3DB02AAD38000091E1BE /* Option.swift */; };
 		85FC68A02A803F0D009FED3A /* MovieDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FC689F2A803F0D009FED3A /* MovieDetailsViewModel.swift */; };
 		85FC68A22A804F44009FED3A /* MovieDetailsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FC68A12A804F44009FED3A /* MovieDetailsDelegate.swift */; };
 /* End PBXBuildFile section */
@@ -126,6 +131,11 @@
 		85DA7A432A8AACD800FAEB45 /* UIInputTextAreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIInputTextAreaView.swift; sourceTree = "<group>"; };
 		85DA7A472A8AFCD900FAEB45 /* MovieRegisterRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRegisterRequest.swift; sourceTree = "<group>"; };
 		85DA7A492A8B077700FAEB45 /* AddMovieDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMovieDelegate.swift; sourceTree = "<group>"; };
+		85DE3DA32AACF8020091E1BE /* UIInputDropdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIInputDropdownView.swift; sourceTree = "<group>"; };
+		85DE3DA52AAD18E90091E1BE /* UIInputDropdownOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIInputDropdownOptionsView.swift; sourceTree = "<group>"; };
+		85DE3DAB2AAD24950091E1BE /* UISheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISheetView.swift; sourceTree = "<group>"; };
+		85DE3DAD2AAD34980091E1BE /* InputDropdownDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDropdownDelegate.swift; sourceTree = "<group>"; };
+		85DE3DB02AAD38000091E1BE /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
 		85FC689F2A803F0D009FED3A /* MovieDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewModel.swift; sourceTree = "<group>"; };
 		85FC68A12A804F44009FED3A /* MovieDetailsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsDelegate.swift; sourceTree = "<group>"; };
 		CFAF78ADB6152CF67E423B08 /* Pods-MyMovies.debug (local).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMovies.debug (local).xcconfig"; path = "Target Support Files/Pods-MyMovies/Pods-MyMovies.debug (local).xcconfig"; sourceTree = "<group>"; };
@@ -244,6 +254,7 @@
 				85FC68A12A804F44009FED3A /* MovieDetailsDelegate.swift */,
 				85D4EE1D2A87CB4000E42E17 /* RatingStarsDelegate.swift */,
 				85DA7A492A8B077700FAEB45 /* AddMovieDelegate.swift */,
+				85DE3DAD2AAD34980091E1BE /* InputDropdownDelegate.swift */,
 			);
 			path = Delegate;
 			sourceTree = "<group>";
@@ -306,6 +317,8 @@
 		8545D8042A7B38C300463757 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				85DE3DAA2AAD24780091E1BE /* UISheetView */,
+				85DE3DA22AACF7CD0091E1BE /* UIInputDropdownView */,
 				850ACA092A9431A400E9A8EF /* UIToastView */,
 				85DA7A422A8AACB500FAEB45 /* UIInputTextAreaView */,
 				850FDD0F2A8870D400A39B87 /* UIInputTextView */,
@@ -401,6 +414,7 @@
 		85794D5E2A998DAF006BAD31 /* Form */ = {
 			isa = PBXGroup;
 			children = (
+				85DE3DAF2AAD37F30091E1BE /* Inputs */,
 				85794D5F2A998DBE006BAD31 /* FormControl.swift */,
 				85794D612A998E92006BAD31 /* FormField.swift */,
 			);
@@ -432,6 +446,31 @@
 				85DA7A432A8AACD800FAEB45 /* UIInputTextAreaView.swift */,
 			);
 			path = UIInputTextAreaView;
+			sourceTree = "<group>";
+		};
+		85DE3DA22AACF7CD0091E1BE /* UIInputDropdownView */ = {
+			isa = PBXGroup;
+			children = (
+				85DE3DA32AACF8020091E1BE /* UIInputDropdownView.swift */,
+				85DE3DA52AAD18E90091E1BE /* UIInputDropdownOptionsView.swift */,
+			);
+			path = UIInputDropdownView;
+			sourceTree = "<group>";
+		};
+		85DE3DAA2AAD24780091E1BE /* UISheetView */ = {
+			isa = PBXGroup;
+			children = (
+				85DE3DAB2AAD24950091E1BE /* UISheetView.swift */,
+			);
+			path = UISheetView;
+			sourceTree = "<group>";
+		};
+		85DE3DAF2AAD37F30091E1BE /* Inputs */ = {
+			isa = PBXGroup;
+			children = (
+				85DE3DB02AAD38000091E1BE /* Option.swift */,
+			);
+			path = Inputs;
 			sourceTree = "<group>";
 		};
 		85FC68942A803C43009FED3A /* ViewController */ = {
@@ -607,6 +646,7 @@
 				8518D95C2A8729170006397C /* HomeViewModel.swift in Sources */,
 				8521184C2A802D690073BBE9 /* MovieDetailsViewController.swift in Sources */,
 				85794D622A998E92006BAD31 /* FormField.swift in Sources */,
+				85DE3DA42AACF8020091E1BE /* UIInputDropdownView.swift in Sources */,
 				85422A8E2A7FE0AD009297D7 /* RatingStarsView.swift in Sources */,
 				85FC68A02A803F0D009FED3A /* MovieDetailsViewModel.swift in Sources */,
 				85FC68A22A804F44009FED3A /* MovieDetailsDelegate.swift in Sources */,
@@ -614,8 +654,11 @@
 				85D4EE212A87F79E00E42E17 /* MovieUpdateRequest.swift in Sources */,
 				852118592A80393B0073BBE9 /* HomeViewController.swift in Sources */,
 				8518D95E2A87297C0006397C /* MovieAPI.swift in Sources */,
+				85DE3DAC2AAD24950091E1BE /* UISheetView.swift in Sources */,
+				85DE3DB12AAD38000091E1BE /* Option.swift in Sources */,
 				850ACA0B2A9431AA00E9A8EF /* UIToastView.swift in Sources */,
 				85794D502A981E9D006BAD31 /* NetworkingManager.swift in Sources */,
+				85DE3DA62AAD18E90091E1BE /* UIInputDropdownOptionsView.swift in Sources */,
 				850ACA012A94210900E9A8EF /* ObservableErrorWrapper.swift in Sources */,
 				851AC6D32A7B382D0028D9AF /* AppDelegate.swift in Sources */,
 				854389D32A7EDE6E009AB0EA /* UIImage+Extensions.swift in Sources */,
@@ -630,6 +673,7 @@
 				854389D02A7ED9DC009AB0EA /* HomeHeaderViewModel.swift in Sources */,
 				85A879D72A86E7F900280751 /* Environments.swift in Sources */,
 				85DA7A4A2A8B077700FAEB45 /* AddMovieDelegate.swift in Sources */,
+				85DE3DAE2AAD34980091E1BE /* InputDropdownDelegate.swift in Sources */,
 				85422A922A7FE629009297D7 /* RatingStartsViewModel.swift in Sources */,
 				854389E12A7F2294009AB0EA /* MovieTableViewCell.swift in Sources */,
 				851AC6D52A7B382D0028D9AF /* SceneDelegate.swift in Sources */,
