@@ -98,6 +98,7 @@ class UIInputDropdownOptionsView<T>: UIView, UITableViewDataSource, UITableViewD
   }
 
   private func configureTableView() {
+    optionsTableView.backgroundColor = .white
     self.addSubview(optionsTableView)
     optionsTableView.dataSource = self
     optionsTableView.delegate = self
